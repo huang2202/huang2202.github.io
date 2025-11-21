@@ -1,0 +1,513 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Manipulation Paper Reading 02 | 开卷洞洞天</title><meta name="author" content="Harry-Guang2202"><meta name="copyright" content="Harry-Guang2202"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="首先是要可靠有关键的说服力，其次是要通用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Manipulation Paper Reading 02">
+<meta property="og:url" content="https://huang2202.github.io/2025/11/17/paper-reading-m-2/index.html">
+<meta property="og:site_name" content="开卷洞洞天">
+<meta property="og:description" content="首先是要可靠有关键的说服力，其次是要通用。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://huang2202.github.io/img/01RainBow.png">
+<meta property="article:published_time" content="2025-11-16T17:34:56.000Z">
+<meta property="article:modified_time" content="2025-11-21T10:33:21.013Z">
+<meta property="article:author" content="Harry-Guang2202">
+<meta property="article:tag" content="Embodied AI">
+<meta property="article:tag" content="Manipulation">
+<meta property="article:tag" content="Paper Reading">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://huang2202.github.io/img/01RainBow.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Manipulation Paper Reading 02",
+  "url": "https://huang2202.github.io/2025/11/17/paper-reading-m-2/",
+  "image": "https://huang2202.github.io/img/01RainBow.png",
+  "datePublished": "2025-11-16T17:34:56.000Z",
+  "dateModified": "2025-11-21T10:33:21.013Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Harry-Guang2202",
+      "url": "https://huang2202.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://huang2202.github.io/2025/11/17/paper-reading-m-2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Manipulation Paper Reading 02',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="开卷洞洞天" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/nova.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Blog</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/01RainBow.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">开卷洞洞天</span></a><a class="nav-page-title" href="/"><span class="site-name">Manipulation Paper Reading 02</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Blog</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Manipulation Paper Reading 02</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-11-16T17:34:56.000Z" title="发表于 2025-11-17 01:34:56">2025-11-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-21T10:33:21.013Z" title="更新于 2025-11-21 18:33:21">2025-11-21</time></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p><s>因为这个文章和上一个是继承关系所以代号是02。</s></p>
+<p>‍</p>
+<p>在开始正文之前我先做一个反思。在<strong>很长很长一段时间</strong>阅读论文的过程中，我总是很盲目地去关注这个论文使用了什么方法以及这个方法的细节是什么。却无意识地走进了<strong>一个巨大的时间陷阱</strong>，就是这个方法是否可靠。现在很多论文包括被CCFA接受了的论文，其实都可能参考意义有限或者就是在赶时间水论文，没有提出真正有实用性的方法，或者说<a target="_blank" rel="noopener" href="https://axi404.top/blog/dark-side-of-ai">“平庸的论文提出方法，优秀的论文提出问题”</a>，绝大多数工作都没有提出新的问题，而是在旧问题旧方法上玩着排列组合的游戏。很多的talking和讲座，也是insight少宣传多。<strong>一个方法如果本身就价值有很局限</strong>，去把那个方法的细节研究清楚完全就是在<strong>浪费自己宝贵的时间和热情</strong>。</p>
+<p>‍</p>
+<p>要首先关注这个方法到底<strong>针对什么任务在做</strong>，做到什么程度，是真的可靠还是无意义的sota。然后再把自己的精力献给真正可靠的优质工作。这是一个 <strong>learning how to learn</strong> 的问题。我曾天真地以为自己有了系统的Note管理以及足够的热情和不错的工具辅助算一个勉强懂学习的人，现在发现这种理解实在是肤浅。大胆地去做把自己做的不好的地方向别人展现出来，并且及时记录下自己的问题。</p>
+<p>‍</p>
+<p>以上是我所有的闲话，回到正题上来。在 <a href="/2025/11/13/paper-reading-pt-1/" title="RL Post Training Paper Reading01">Post Training RL Paper Reading01</a> 我过分关注了很多不可靠的方法，除了VLAC和RL100这种绝对优秀的工作，比较可靠的工作只有 PLD，SELF-IMPROVING EMBODIED FOUNDATION MODELS，WMPO。其中 PLD 是最可靠的，SELF-IMPROVING EMBODIED FOUNDATION MODELS真机装配实验没有做完整， WMPO的世界模型不实用而且可能有过拟合的问题，动作表征也做的不好。</p>
+<p>‍</p>
+<p>我意识到RL只是方法导向，真正重要的主题是如何在<strong>真机上进行精细的操作</strong>(如插拔，如装配，甚至很多任务可以设计的更复杂)，在操作方面，具身智能会迎来一段<strong>野蛮生长</strong>的时期，我开始第二轮调研。</p>
+<p>‍</p>
+<p>每一个论文会有 <kbd>一个星级评价（结尾）</kbd>​ 和 <kbd>一句个人评价（开头）</kbd>，两个评价都带有主观性，并不代表该工作的客观价值，如有冒犯希望谅解。</p>
+<p>⭐ 看了一次不会再想看二次的论文</p>
+<p>⭐⭐ 不错的论文，看完学习上有所收获</p>
+<p>⭐⭐⭐  很好的论文，看完研究上有所启发</p>
+<p>⭐⭐⭐⭐ 震撼的论文，可以是一段时间的 talking 话题</p>
+<p>⭐⭐⭐⭐⭐ 无与伦比空前绝后的论文，可以写进教科书</p>
+<p>‍</p>
+<h2 id="思考一个问题">思考一个问题</h2>
+<p>如果有一下两个工作可以实现，你希望实现哪个工作：</p>
+<ol>
+<li>
+<p>可以做到任何任务100%的成功率，但是仅限于拟合单任务。</p>
+</li>
+<li>
+<p>可以通用学习所有任务，但是每个任务成功率80%左右。（而且是要求是基于学习的方法）</p>
+</li>
+</ol>
+<p>1 对 工业很有实用性，2 是 更符合理想。</p>
+<p>1 是 注定可以被走通的，2 才是在真正的要解决的问题。或者<strong>2 究竟可不可能成为现实 本身就是一个问题</strong>。</p>
+<p>‍</p>
+<h2 id="Learning-a-Thousand-Tasks-in-a-Day"><a target="_blank" rel="noopener" href="https://arxiv.org/html/2511.10110v1">Learning a Thousand Tasks in a Day</a></h2>
+<p><strong>我的评价：</strong> 1000个任务确实很牛！但是如果是开环且不依赖scaling law，这个工作如何被借鉴或者扩展呢？我认为开环检索只是为了极致数据效率的极致做法，但是参考意义不大。这个工作可靠的观点就是把学习分解为“对齐”和“交互”两个阶段，这个范式可以被迁移！</p>
+<h3 id="关键信息">关键信息</h3>
+<p><strong>任务类型：</strong>  极其多样化，包括<strong>刚体</strong>（开箱 、插面包 ）、<strong>可形变体</strong>（折短裤 、插书包 ）和<strong>精细操作</strong>（铲煎饼 、拉拉链 ）。这些任务是非常有说服力的灵巧操作（dexterous manipulation）。</p>
+<ul>
+<li><strong>受控实验：</strong>  包含 10 种微技能和 70 个物体。</li>
+<li><strong>大规模实验：</strong>  包含 <strong>1,000 个不同任务</strong>、402 个物体和 31 种宏观技能。</li>
+</ul>
+<p>MT3 (Ret-Ret) 碾压 SOTA (在低数据区)，主要思想是 <strong>“分解”</strong> 和 <strong>“检索”</strong> 。真正实现了“实用”的机器人教学，挑战了“Scaling Law”的范式,有可解释性与可靠性。</p>
+<p>但是这个方法为了实现极致的数据效率，放弃了闭环反馈是一个开环，牺牲了鲁棒性，无法满足“反应式控制 (reactive control)”的需求。</p>
+<h3 id="Method">Method</h3>
+<p><img src="/1assets/image-20251116191450-86m3y17.png" alt="image"></p>
+<p><strong>“分解”</strong> ：</p>
+<ul>
+<li><strong>对齐 (Alignment) 阶段：</strong>  任务是把机器人的末端执行器（或抓着的物体）移动到<em>适合开始交互</em>的那个​<strong>起始姿态</strong>​。在这个阶段，​<strong>只关心最终姿态是否正确，不关心路径</strong>（比如，机器人可以绕个大圈，只要最后停对了地方就行）。</li>
+<li><strong>交互 (Interaction) 阶段：</strong>  任务是从那个对齐好的姿态开始，执行<strong>真正精确的操控动作</strong>。在这个阶段，<strong>路径和动作必须非常精确</strong>（比如插插头，动作必须笔直稳定）。</li>
+</ul>
+<p>将一个复杂问题（学习完整轨迹）拆分为两个更简单的子问题（学习对齐 + 学习交互），就能带来性能上的提升，尤其是在演示数据有限的情况下。</p>
+<p><strong>“检索”</strong> ：</p>
+<ul>
+<li>BC-BC，BC-Ret，Ret-BC和Ret-Ret对比实验，一个单独的、一体化的 (monolithic) 神经网络（命名为 MT-ACT+）也参与对比证明分解的有效性（最后实验结果是<strong>分解 &gt; 一体化</strong>）。</li>
+</ul>
+<p>‍</p>
+<p><strong>我的评分：</strong> ⭐⭐</p>
+<p>‍</p>
+<h2 id="Robot-Learning-a-Physical-World-Model"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2511.07416">Robot Learning a Physical World Model</a></h2>
+<p><strong>我的评价：</strong> 它的这个视频生成模型不实用！它的World Modeling可以借鉴。</p>
+<h3 id="关键信息-2">关键信息</h3>
+<p>流程是 Image -&gt; Video Generation -&gt; World Modeling -&gt; Robot Manipulation。实验是真实世界机器人的<strong>pouring</strong>和<strong>Insertion</strong>。方法的关键是 “物理世界建模”提升操控鲁棒性。</p>
+<p><img src="/1assets/image-20251116194641-x5e9zsm.png" alt="image"></p>
+<p>在<strong>Physical World Modeling &amp; Learning</strong>创建的物理仿真器中，使用<strong>残差强化学习 (Residual RL)</strong>  训练一个机器人策略，让它学会如何<em>物理可行地</em>复现这个“物体轨迹“。</p>
+<p>‍</p>
+<p><strong>我的评分：</strong> ⭐⭐</p>
+<p>‍</p>
+<h2 id="RT-Trajectory"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2311.01977">RT-Trajectory</a></h2>
+<p>我的评价：<strong>和NoTVLA思路一类的经典工作。和Post RL没有关系，单纯作为补充了解一下</strong>。</p>
+<h3 id="关键信息-3">关键信息</h3>
+<p>Pick from Chair，Move within Drawer等难度稍微大一点的pick and place任务。</p>
+<p><img src="/1assets/image-20251116200316-clt21u1.png" alt="image"></p>
+<p>该方法依赖于一个固定的、标定好的相机来将3D轨迹投影为2.5D草图。</p>
+<p><img src="/1assets/image-20251116200633-10hanzr.png" alt="image"></p>
+<p>上图从左到右是 2D路径，时间进度，高度 (Z轴)和交互。最后的f是结合的结果。“2.5D”轨迹图像随后与<strong>当前的相机RGB图像</strong>在<strong>特征维度上进行拼接 (Concatenate)。</strong></p>
+<p><img src="/1assets/image-20251116201218-g3qck1h.png" alt="image"></p>
+<p><strong>我的评分：</strong> ⭐⭐⭐</p>
+<p>‍</p>
+<h2 id="ConRFT-A-Reinforced-Fine-tuning-Method-for-VLA-Models-via-Consistency-Policy"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2502.05450">ConRFT: A Reinforced Fine-tuning Method for VLA Models via Consistency Policy</a></h2>
+<p><strong>我的评价：</strong> 虽然存在“Reward Hacking”（机器人学会了欺骗分类器。例如，摆出一个看似成功了的姿势，而不是真正完成任务）和 为了 实时性能和训练效率 冻结VLA主干网络 的 问题。<strong>但是真机实验比较有说服力</strong>，而且范式不错。</p>
+<h3 id="关键信息-4">关键信息</h3>
+<p>全真机实验，<strong>这组任务选得很好</strong>：它不仅包括简单的“拾取-放置”（如拿香蕉、拿勺子），还包括了真正有难度的 <strong>“富含接触”的精细操作</strong>，如 <strong>“插轮子”（Insert Wheel）</strong>  和 <strong>“挂中国结”（Hang Chinese Knot）</strong> 。这些任务对策略的精度和鲁棒性要求极高。</p>
+<p>‍</p>
+<p>解决预训练的VLA模型（如Octo）在“落地”到特定真实世界任务时面临的<strong>数据困境</strong>。通过强化学习（RL）安全、高效地将模型微调到高水平。</p>
+<ul>
+<li>
+<p>纯RL（如HIL-SERL ）在真实世界中样本效率极低 ，因此他们设计了<strong>ConRFT</strong>这种“离线-在线”的混合范式。</p>
+</li>
+<li>
+<p>不同于SFT+HIL (e.g., HG-DAgger)允许人类在SFT过程中进行干预，不一致的人类干预（噪声）反而会干扰SFT的学习过程。</p>
+</li>
+</ul>
+<p>‍</p>
+<h3 id="Method-2">Method</h3>
+<p><img src="/1assets/image-20251116205431-q481qjc.png" alt="image"></p>
+<ul>
+<li>
+<p><strong>一个统一的、基于一致性（Consistency）的训练目标</strong> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="script">L</mi><mi>π</mi></msub><mo>=</mo><mi>β</mi><msubsup><mi mathvariant="script">L</mi><mi>π</mi><mrow><mi>B</mi><mi>C</mi></mrow></msubsup><mo>+</mo><mi>η</mi><msubsup><mi mathvariant="script">L</mi><mi>π</mi><mi>Q</mi></msubsup></mrow><annotation encoding="application/x-tex">\mathcal{L}_{\pi}=\beta\mathcal{L}_{\pi}^{BC}+\eta\mathcal{L}_{\pi}^{Q}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathcal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">π</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0883em;vertical-align:-0.247em;"></span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="mord"><span class="mord mathcal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-2.453em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">π</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">BC</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0883em;vertical-align:-0.247em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">η</span><span class="mord"><span class="mord mathcal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-2.453em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">π</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">Q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span>  <strong>(BC+Q-Learning)</strong></p>
+<ul>
+<li>选择Cal-QL是为了是希望Q函数对 <strong>“分布外”（OOD）</strong> 的动作保持鲁棒。</li>
+<li>引入BC是为了弥补Cal-QL在小数据集上的缺陷。</li>
+</ul>
+</li>
+<li>
+<p>在离线阶段（Cal-ConRFT）:<strong>从小数据集中高效初始化</strong>。通过结合BC和Cal-QL（一种离线RL算法），从极少量（20-30个）不完美的演示中，学习到一个稳定且鲁棒的策略和价值函数。</p>
+<ul>
+<li>使用<strong>一致性策略（Consistency Policy）</strong>  作为VLA的动作头。有助于利用演示数据中<strong>不一致和次优</strong>的部分，轻量高效。</li>
+</ul>
+</li>
+<li>
+<p>在在线阶段（HIL-ConRFT）：保留统一的训练目标（实现快速适应），并结合<strong>人因在环（HIL）</strong> 的干预 ，该方法能安全地探索环境（人类防止灾难性失败），同时高效地利用新数据（包括人类的纠正数据） 来快速优化策略</p>
+<ul>
+<li>
+<p>保留离线阶段的演示缓冲区（Demo Buffer <strong>D</strong>），创建一个新的重放缓冲区（Replay Buffer <strong>R</strong>）来存储在线交互产生的新数据。</p>
+</li>
+<li>
+<p><strong>对称采样（Symmetric Sampling）</strong> ：在训练时，从 D 和 R 中<strong>等比例采样</strong>数据。</p>
+</li>
+<li>
+<p>需人类干预！</p>
+<ul>
+<li>确保安全</li>
+<li>如果陷入局部最优/无法恢复人类干预加速学习。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>‍</p>
+<h3 id="可拓展方向">可拓展方向</h3>
+<p>​<strong>自适应的模块化微调</strong>：</p>
+<ul>
+<li>
+<p>系统可以先用一个“诊断”模块判断当前场景是否在<strong>预训练的分布内</strong>。</p>
+<ul>
+<li>如果<strong>在分布内</strong>，就只微调动作头（如ConRFT），追求最高实时性能。</li>
+<li>如果<strong>在分布外</strong>（即检测到“未见场景”），则开始在线微调VLA主干的表征能力，以适应这个新情况。</li>
+</ul>
+</li>
+<li>
+<p>更dense的奖励机制或者更细粒度的奖励标注。</p>
+</li>
+</ul>
+<p>‍</p>
+<p><strong>我的评分</strong>：⭐⭐⭐</p>
+<p>‍</p>
+<h2 id="ForceVLA"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.22159">ForceVLA</a></h2>
+<p><strong>我的评价：</strong> 我曾经参与的工作…</p>
+<h3 id="关键信息-5">关键信息</h3>
+<p>加入力反馈加了个MoE，真机实验做的好，精细操作能力很强，而且是通用模型。</p>
+<p><img src="/1assets/image-20251116215716-qz9fijs.png" alt="image"></p>
+<p><img src="/1assets/image-20251116215929-arzj91j.png" alt="image"></p>
+<p><strong>我的评分</strong>：⭐⭐⭐</p>
+<p>‍</p>
+<p>‍</p>
+<h2 id="Human-in-the-loop-Online-Rejection-Sampling-for-Robotic-Manipulation"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2510.26406">Human-in-the-loop Online Rejection Sampling for Robotic Manipulation</a></h2>
+<p>它来自清华大学和腾讯Robotics X实验室 ，发表于2025年10月 ，非常新。</p>
+<p><strong>我的评价：</strong> 虽然真机实验结果很漂亮<strong>但是人类干预太多了</strong>！而且还是 <strong>单任务的 (single-task)</strong> ，但是真机任务难度确实说服力很强。</p>
+<h3 id="关键信息-6">关键信息</h3>
+<p>三个具有挑战性的<strong>真实世界“接触密集型” (contact-rich) 操控任务。</strong></p>
+<p><img src="/1assets/image-20251116221259-vairl59.png" alt="image"></p>
+<p>传统RL试图 <em>学习</em> 一个价值网络（Q-function）来 <em>估计</em> 动作的好坏 。<strong>Hi-ORS的核心洞见是：彻底放弃不稳定的Q-network！</strong></p>
+<p><img src="/1assets/image-20251116221750-6eckt5u.png" alt="image"></p>
+<h3 id="Method-3">Method</h3>
+<p>‍</p>
+<p><img src="/1assets/image-20251116221942-mo18dbx.png" alt="image"></p>
+<ul>
+<li>
+<p><strong>输入 (Input):</strong>  一个预训练好的基础VLA策略 (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">\pi_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>) ，以及来自真实世界的<strong>环境观测</strong>（如多视角图像、语言指令）。</p>
+</li>
+<li>
+<p><strong>模块 A: 异步Actor节点 (在机器人上执行)</strong> :</p>
+<ul>
+<li>基础策略 (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">\pi_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>) 在真实机器人上执行任务（如“插入保湿霜”） 。</li>
+<li>同时，<strong>人类操作员</strong>（如使用Meta Quest 3 ）可以随时介入，进行<strong>灵活的人工干预</strong>（如纠正机器人的抓取姿态）。</li>
+</ul>
+</li>
+<li>
+<p><strong>模块 B: 在线数据缓冲 (D)</strong> :</p>
+<ul>
+<li>收集完整的执行轨迹（包括策略自主执行和人工干预的部分） 。</li>
+<li>为每条轨迹附加一个稀疏的<strong>任务奖励</strong>（通常是二元的：成功/失败）。</li>
+</ul>
+</li>
+<li>
+<p><strong>模块 C: 拒绝采样 (B1. Rejection Sampling)</strong> :</p>
+<ul>
+<li><strong>（这是最关键的组件）</strong>  系统设置一个奖励阈值 <code>m</code> 。</li>
+<li>遍历数据缓冲(D)，<strong>过滤</strong>所有轨迹：总奖励 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">\ge m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span></span></span></span>（即成功）的轨迹被<strong>保留</strong>；总奖励 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&lt;</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">&lt; m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span></span></span></span>（即失败）的轨迹被<strong>丢弃</strong> 。</li>
+</ul>
+</li>
+<li>
+<p><strong>模块 D: 异步Learner节点 (在GPU上训练)</strong> :</p>
+<ul>
+<li>仅使用上一步中<strong>被接受</strong>的“成功轨迹”数据 。</li>
+<li>使用<strong>监督训练目标 (B2. Supervised Training Objective)</strong>  来更新（“Distill”）基础策略 (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">\pi_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>) 的权重 。</li>
+</ul>
+</li>
+<li>
+<p><strong>输出 (Output):</strong>  一个经过微调、更稳健、且<strong>学会了错误恢复</strong>的VLA策略 。</p>
+</li>
+</ul>
+<p>‍</p>
+<p><strong>我的评分</strong>：⭐</p>
+<p>‍</p>
+<p>‍</p>
+<p>‍</p>
+<h2 id="ALOHA-Unleashed"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2410.13126">ALOHA Unleashed</a></h2>
+<p>我的评价：证明在低成本硬件，无需力矩传感器，使用非专家收集数据，也能实现灵巧操作SOTA性能。不过策略是单任务的，还是在过拟合！<strong>网络架构倒是可以参考一下。印证了我开头说的拟合单任务100%成功率这条路一定是可以走通的说法。</strong></p>
+<h3 id="关键信息-7">关键信息</h3>
+<p>“<strong>大规模数据 + 强表达力模型</strong>”这一“简单配方”在解决被视为机器人“圣杯”级难题（如系鞋带）时的惊人效果。</p>
+<p>挂衬衫 (Shirt Hanging)，系鞋带 (Shoelace Tying)，更换机器人手指 (Robot Finger Replace)，齿轮插入 (Gear Insertion)和厨房物品堆叠 (Random Kitchen Stack)。</p>
+<p>面对大规模、多样化的真实数据，使用强表达能力的生成模型（如Diffusion）是<strong>必须的</strong>。（实验结果：<strong>Diffusion 远优于 ACT</strong>）。</p>
+<p><img src="/1assets/image-20251116223909-vlmd2yl.png" alt="image"></p>
+<p><img src="/1assets/image-20251116223926-hy8x0sa.png" alt="image"></p>
+<p><strong>我得评分</strong>：⭐⭐</p>
+<h2 id="SPIDER-Scalable-Physics-Informed-Dexterous-Retargeting"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2511.09484">SPIDER: Scalable Physics-Informed Dexterous Retargeting</a></h2>
+<p><strong>我的评价：</strong> 好久没看到这么Solid的工作，看到这个论文就好像呼吸了一口新鲜的空气！</p>
+<h3 id="关键信息-8">关键信息</h3>
+<p>实现<strong>规模、效率和物理真实性</strong>的统一。它与 SOTA 最大的不同在于，它<strong>不使用 RL</strong> ，而是采用了一种<strong>基于采样的优化 (Sampling-based Optimization)</strong>  ，这使得它<strong>比 RL 快一个数量级 (10x)</strong>  ，同时又因为它在物理模拟器中进行采样，保证了轨迹的<strong>动态可行性</strong>（优于 IK）。</p>
+<p>大规模、跨形态的验证，并开源了数据生成管线。</p>
+<p><strong>真实机器人任务（非常有说服力）</strong> ：SPIDER 生成的轨迹（无需额外训练）<strong>直接在真实的 Franka 臂 + Allegro 手上执行</strong> 。成功完成了 <strong>旋转灯泡、弹吉他、拔充电器</strong> 等需要高精度、多指协调的灵巧操作任务 。</p>
+<p><strong>跨形态，跨任务域，跨数据集和跨数据质量。</strong></p>
+<ul>
+<li>
+<p><strong>核心洞见 (Key Insight):</strong>  SPIDER 的核心思想是解耦。</p>
+<ol>
+<li>让<strong>人类演示</strong>提供​<strong>高层指导</strong>（任务结构和目标）。</li>
+<li>让​<strong>大规模的物理采样</strong>​（在模拟器中）来​<strong>提炼轨迹</strong>，确保其动态可行性和接触正确性。</li>
+</ol>
+</li>
+<li>
+<p><strong>关键技术 (Virtual Contact Guidance):</strong>  为了解决“接触信息缺失”的挑战，SPIDER 引入了“虚拟接触引导”机制。这相当于在优化初期，施加一个<strong>虚拟力</strong>，将机器人的手“粘”到期望的接触点上，以确保它学会正确的接触模式。这个力会随着优化逐渐放松。</p>
+</li>
+</ul>
+<p><img src="/1assets/image-20251117004516-vqlo08p.png" alt="image"></p>
+<h3 id="Method-4">Method</h3>
+<p>由于任务的物理接触特性（非凸且非连续），我们不能用梯度，所以选择了一种“基于采样的优化”；并且为了平衡“探索”（找到接触）和“利用”（稳定接触），我们<strong>在采样时使用了一个动态“退火”的搜索半径</strong>，让它从大范围搜索逐渐变为精细调整。</p>
+<p><img src="/1assets/image-20251117004843-32mzkoi.png" alt="image"></p>
+<ul>
+<li><strong>论文举例 (Stir Stick):</strong>  比如，在“搅拌”任务中，机器人可以用“拇指和食指”（人类的方式）捏住棒子，也可以用“食指和中指”捏住。</li>
+<li><strong>失败原因</strong>：两种方式都能完成任务（物体运动相似），但后者不符合人类演示的意图。由于优化问题的“非凸性”，一个标准的采样优化器很可能会收敛到任何一个可行的解，导致它学会“非人类”的、不自然的接触模式</li>
+<li><strong>不能</strong>简单地添加一个“软奖励 (soft reward)” <strong>。</strong>  因为如果期望的接触模式本身就很难被采样到（比如在一个很窄的“山谷”里），那么即使有奖励，优化器也可能找不到它。</li>
+</ul>
+<p>‍</p>
+<p><img src="/1assets/image-20251117003815-llta12g.png" alt="image"></p>
+<ul>
+<li>
+<p>SPIDER 采用了一种更强硬的策略，它“<strong>显式地扩大了（期望解的）吸引盆</strong> (enlarges the basin of attraction)”。</p>
+</li>
+<li>
+<p><strong>实现机制:</strong></p>
+<ol>
+<li><strong>“粘合” (Sticking):</strong>  在优化的初始阶段，它在“期望的”接触点（如机器人的指尖和物体的握柄）之间施加一个**“虚拟约束”**。这就像用胶水把它们暂时“粘”在一起，强迫优化器朝这个方向探索。</li>
+<li><strong>“课程” (Curriculum):</strong>  这个“粘合”约束不是永久的。它会以**“课程学习”​<strong>的方式</strong>​“逐渐放松 (gradually relaxed)”**。</li>
+</ol>
+</li>
+</ul>
+<p><img src="/1assets/image-20251117010013-6unbuac.png" alt="image"></p>
+<p><strong>(Equation 4):</strong>  这种约束的核心是保持 <strong>“相对位置 (relative position)”</strong> 。它不关心机器人手指或物体的绝对坐标，只关心“机器人指尖”相对于“物体握柄”的相对位置是否与人类演示中的一致。这大大降低了采样复杂度。</p>
+<p>另外一个细节是加了个“<strong>接触过滤器”</strong> ：如果一个接触的<strong>持续时间太短</strong>（小于 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mrow><mi>c</mi><mo separator="true">,</mo><mi>m</mi><mi>i</mi><mi>n</mi></mrow></msub></mrow><annotation encoding="application/x-tex">t_{c,min}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9012em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">min</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>），或者接触点<strong>漂移得太厉害</strong>（大于 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mrow><mi>c</mi><mo separator="true">,</mo><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub></mrow><annotation encoding="application/x-tex">d_{c,max}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">ma</span><span class="mord mathnormal mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>），它就被归类为“不稳定”。确保<strong>只有可靠的、有意义的接触点</strong>才会用来“引导”优化过程，从而防止了噪声数据对最终结果的干扰。</p>
+<p><img src="/1assets/image-20251117010534-nz13x6o.png" alt="image"></p>
+<p>人形机器人学习残差。</p>
+<p><strong>我的评分：</strong> ⭐⭐⭐⭐</p>
+<h2 id="EO-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2508.21112">EO-1</a></h2>
+<p>我的评价：真机实验非常的具有说服力，Discussion（Sec4.9）十分清晰地说明了他们的方法为什么是有效的。</p>
+<h3 id="关键信息-9">关键信息</h3>
+<p>针对  <strong>“交错式推理与交互” (Interleaved Reasoning and Interaction) 的能力。</strong></p>
+<p><strong>精细灵巧操作 (Dexterous):</strong>  “叠衣服”, “做三明治”, “烤牛排” 。在这些任务上，EO-1 (81.0% avg) 显著优于 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">\pi_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> (67.0%) 和 GR00T (68.0%)。</p>
+<p><strong>推理控制 (Reasoning Control):</strong>  “视觉重排” 和 “井字棋” 。在井字棋上，EO-1 (76.0%) 吊打 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">\pi_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> (24.0%) 和 GR00T (36.0%) 。这雄辩地证明了其统一架构在“实时推理-行动循环”上的绝对优势。</p>
+<p>这项工作为“交错式推理-行动”这一核心难题提供了第一个真正意义上SOTA的、端到端的解决方案（模型+数据+训练）。它指明了摆脱“Act-at-the-End”僵化范式的可行路径。</p>
+<p><strong>挑战了分层架构的必要性：</strong>  在机器人领域，长期以来“高层规划(LLM)”和“底层控制(Policy)”都是分离的。EO-1 证明了<strong>将二者统一在单一模型中是可行的，且性能更强</strong> ，因为它消除了分层带来的通信瓶颈和误差累积。</p>
+<h3 id="Method-5">Method</h3>
+<p><img src="/1assets/image-20251117011408-rui425s.png" alt="image"></p>
+<p>Figure1: 4种token的混合解码架构。</p>
+<ol>
+<li>
+<p><strong>输入 (Input):</strong> 模型接收一个<strong>交错的Token序列</strong> 。这个序列包含了：</p>
+<ul>
+<li><strong>Vision Token (视觉):</strong>  图像块（Image Patches）。</li>
+<li><strong>Text Token (文本):</strong>  任务指令或中间的推理QA。</li>
+<li><strong>State Token (状态):</strong>  机器人本体状态（如关节角度）。</li>
+<li><strong>Noisy Action Token (带噪动作):</strong>  用于Flow Matching训练目标的带噪动作 。</li>
+</ul>
+</li>
+<li>
+<p><strong>核心模块 (Core Module):</strong> 一个<strong>单一的、共享参数的解码器Transformer</strong>（“Embodied Onevision Foundation Model”，基于Qwen2.5-VL初始化） 。它使用Causal Attention（因果注意力）处理整个多模态序列 。</p>
+</li>
+<li>
+<p><strong>输出 (Output) - 混合解码:</strong> Transformer的输出会根据<em>下一个需要生成的Token类型</em>，被送入两个不同的头部 ：</p>
+<ul>
+<li><strong>如果需要“推理”：</strong>  序列被送入 <strong>LM Head</strong>（一个标准的Logits预测头），通过<strong>自回归</strong>方式采样生成<em>离散的文本Token</em>（例如，生成&quot;下一步是拿起杯子&quot;） 。</li>
+<li><strong>如果需要“行动”：</strong>  序列被送入 <strong>Flow Head</strong>（一个MLP），通过<strong>流匹配</strong>方式<em>降噪</em>并预测出一个<em>连续的动作向量</em>（例如，生成<code>[0.1, -0.2, ...]</code>的关节动作）。</li>
+</ul>
+</li>
+</ol>
+<p><strong>最关键的设计选择：</strong></p>
+<ul>
+<li><strong>混合解码 (Hybrid Decoding):</strong>  这就是EO-1的核心。它没有像其他模型那样把动作也“Token化”（离散化），而是保留了​<strong>文本的离散性</strong>​（适合逻辑推理）和​<strong>动作的连续性</strong>（适合精确控制），并在同一个模型中实现。</li>
+<li><strong>交错数据格式 (Interleaved Data):</strong>  模型的强大能力<em>严重依赖</em> EO-Data1.5M 这种<code>[V-T-A-V-T-A...]</code>的数据格式 。</li>
+<li><strong>交错纠正采样 (Interleaved Rectifying Sampling):</strong>  一种特殊的训练策略（见图2 ）。因为在训练时，一个<code>action</code>​既是Flow Matching的<code>clean target</code>​，又是后续<code>text_QA</code>​的<code>condition</code>。这个策略能确保模型在训练时正确处理这种因果依赖 。</li>
+</ul>
+<p><img src="/1assets/image-20251117012424-7qjbvji.png" alt="image"></p>
+<p>‍</p>
+<p><img src="/1assets/image-20251117011819-96bkdy1.png" alt="image"></p>
+<h3 id="Discussion">Discussion</h3>
+<p>它试图厘清 (isolate) EO-1模型的成功到底归功于：</p>
+<ul>
+<li>​ <strong>(i) 创新的混合解码架构</strong>：即“自回归(AR) + 连续流匹配(Flow)”的统一解码器。</li>
+<li><strong>(ii) 大规模的交错式V-T-A数据</strong>：即 EO-Data1.5M 这种<code>[V-T-A-V-T-A...]</code>的数据格式。</li>
+</ul>
+<p>做了“四方”对比实验去验证：</p>
+<ul>
+<li>
+<p>发现一：架构 - 混合解码 (AR+Flow) 完胜 纯AR</p>
+<ul>
+<li><strong>对比：</strong>  <code>EO-1 (base)</code>​ vs. <code>EO-1 (fast)</code>。</li>
+</ul>
+</li>
+<li>
+<p>发现二：数据 - “对齐”的交错数据至关重要</p>
+<ul>
+<li>**对比：**​<code>EO-1 (interleaved)</code>​ vs. <code>EO-1 (base)</code>。</li>
+</ul>
+</li>
+<li>
+<p>发现三：“通用”的多模态数据有害！</p>
+<ul>
+<li><strong>对比：</strong>  <code>EO-1 (llava)</code>​ vs. <code>EO-1 (base)</code>​ 或 <code>EO-1 (interleaved)</code>。</li>
+<li>与具身控制任务<strong>未对齐</strong>的通用图文数据（如LLaVA），会“将模型偏向于语言先验，从而<strong>削弱其物理落地能力</strong> (physical grounding)”。</li>
+</ul>
+</li>
+</ul>
+<p>EO-1的卓越性能并非来自单一的创新，而是来自​<strong>架构和数据的协同作用</strong>。</p>
+<p>它的成功归功于一个统一的架构（​<strong>混合解码</strong>​）和为其量身定制的数据（​<strong>对齐的、交错的V-T-A数据</strong>）的完美结合。这种“联合建模” (joint modeling) 不仅加强了多模态理解和运动控制之间的时间对齐，也确保了模型在开放世界和分布外场景中的稳定和高性能。</p>
+<p>‍</p>
+<p>我的评分：⭐⭐⭐⭐</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://huang2202.github.io">Harry-Guang2202</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://huang2202.github.io/2025/11/17/paper-reading-m-2/">https://huang2202.github.io/2025/11/17/paper-reading-m-2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://huang2202.github.io" target="_blank">开卷洞洞天</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Paper-Reading/">Paper Reading</a><a class="post-meta__tags" href="/tags/Embodied-AI/">Embodied AI</a><a class="post-meta__tags" href="/tags/Manipulation/">Manipulation</a></div><div class="post-share"><div class="social-share" data-image="/img/01RainBow.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/11/18/RL00-XJTU-%E6%9C%AC%E7%A7%91-RL/" title="RL00-XJTU-UnderGraduate-RL"><img class="cover" src="/img/RL.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">RL00-XJTU-UnderGraduate-RL</div></div><div class="info-2"><div class="info-item-1">XJTU-22级强化学习本科教学内容个人总结-应付面试version</div></div></div></a><a class="pagination-related" href="/2025/11/13/paper-reading-pt-1/" title="RL Post Training Paper Reading01"><img class="cover" src="/img/robot.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">RL Post Training Paper Reading01</div></div><div class="info-2"><div class="info-item-1">这次调研的所有工作，几乎都是在回答这个核心问题：我们如何构建一个能自我改进的“数据飞轮”?</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/11/13/paper-reading-pt-1/" title="RL Post Training Paper Reading01"><img class="cover" src="/img/robot.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-11-13</div><div class="info-item-2">RL Post Training Paper Reading01</div></div><div class="info-2"><div class="info-item-1">这次调研的所有工作，几乎都是在回答这个核心问题：我们如何构建一个能自我改进的“数据飞轮”?</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/nova.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Harry-Guang2202</div><div class="author-info-description">XJTU本科生 直博ZJU CAD&CG Zhongguancun Academy 博0</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/huang2202" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:zju_hgy@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss" style="color: #E65100;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">网站初建很多功能尚不完善 正在努力完善中...</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">思考一个问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Learning-a-Thousand-Tasks-in-a-Day"><span class="toc-number">2.</span> <span class="toc-text">Learning a Thousand Tasks in a Day</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E4%BF%A1%E6%81%AF"><span class="toc-number">2.1.</span> <span class="toc-text">关键信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Method"><span class="toc-number">2.2.</span> <span class="toc-text">Method</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Robot-Learning-a-Physical-World-Model"><span class="toc-number">3.</span> <span class="toc-text">Robot Learning a Physical World Model</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E4%BF%A1%E6%81%AF-2"><span class="toc-number">3.1.</span> <span class="toc-text">关键信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RT-Trajectory"><span class="toc-number">4.</span> <span class="toc-text">RT-Trajectory</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E4%BF%A1%E6%81%AF-3"><span class="toc-number">4.1.</span> <span class="toc-text">关键信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ConRFT-A-Reinforced-Fine-tuning-Method-for-VLA-Models-via-Consistency-Policy"><span class="toc-number">5.</span> <span class="toc-text">ConRFT: A Reinforced Fine-tuning Method for VLA Models via Consistency Policy</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E4%BF%A1%E6%81%AF-4"><span class="toc-number">5.1.</span> <span class="toc-text">关键信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Method-2"><span class="toc-number">5.2.</span> <span class="toc-text">Method</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E6%8B%93%E5%B1%95%E6%96%B9%E5%90%91"><span class="toc-number">5.3.</span> <span class="toc-text">可拓展方向</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ForceVLA"><span class="toc-number">6.</span> <span class="toc-text">ForceVLA</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E4%BF%A1%E6%81%AF-5"><span class="toc-number">6.1.</span> <span class="toc-text">关键信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Human-in-the-loop-Online-Rejection-Sampling-for-Robotic-Manipulation"><span class="toc-number">7.</span> <span class="toc-text">Human-in-the-loop Online Rejection Sampling for Robotic Manipulation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E4%BF%A1%E6%81%AF-6"><span class="toc-number">7.1.</span> <span class="toc-text">关键信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Method-3"><span class="toc-number">7.2.</span> <span class="toc-text">Method</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ALOHA-Unleashed"><span class="toc-number">8.</span> <span class="toc-text">ALOHA Unleashed</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E4%BF%A1%E6%81%AF-7"><span class="toc-number">8.1.</span> <span class="toc-text">关键信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SPIDER-Scalable-Physics-Informed-Dexterous-Retargeting"><span class="toc-number">9.</span> <span class="toc-text">SPIDER: Scalable Physics-Informed Dexterous Retargeting</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E4%BF%A1%E6%81%AF-8"><span class="toc-number">9.1.</span> <span class="toc-text">关键信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Method-4"><span class="toc-number">9.2.</span> <span class="toc-text">Method</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EO-1"><span class="toc-number">10.</span> <span class="toc-text">EO-1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E4%BF%A1%E6%81%AF-9"><span class="toc-number">10.1.</span> <span class="toc-text">关键信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Method-5"><span class="toc-number">10.2.</span> <span class="toc-text">Method</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Discussion"><span class="toc-number">10.3.</span> <span class="toc-text">Discussion</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/11/19/RL01-BC-AIL-ModelBased/" title="RL01-BC-AIL-ModelBased"><img src="/img/leibu.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RL01-BC-AIL-ModelBased"/></a><div class="content"><a class="title" href="/2025/11/19/RL01-BC-AIL-ModelBased/" title="RL01-BC-AIL-ModelBased">RL01-BC-AIL-ModelBased</a><time datetime="2025-11-19T13:20:00.000Z" title="发表于 2025-11-19 21:20:00">2025-11-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/18/RL00-XJTU-%E6%9C%AC%E7%A7%91-RL/" title="RL00-XJTU-UnderGraduate-RL"><img src="/img/RL.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RL00-XJTU-UnderGraduate-RL"/></a><div class="content"><a class="title" href="/2025/11/18/RL00-XJTU-%E6%9C%AC%E7%A7%91-RL/" title="RL00-XJTU-UnderGraduate-RL">RL00-XJTU-UnderGraduate-RL</a><time datetime="2025-11-18T02:41:19.459Z" title="发表于 2025-11-18 10:41:19">2025-11-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/17/paper-reading-m-2/" title="Manipulation Paper Reading 02"><img src="/img/01RainBow.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Manipulation Paper Reading 02"/></a><div class="content"><a class="title" href="/2025/11/17/paper-reading-m-2/" title="Manipulation Paper Reading 02">Manipulation Paper Reading 02</a><time datetime="2025-11-16T17:34:56.000Z" title="发表于 2025-11-17 01:34:56">2025-11-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/13/paper-reading-pt-1/" title="RL Post Training Paper Reading01"><img src="/img/robot.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RL Post Training Paper Reading01"/></a><div class="content"><a class="title" href="/2025/11/13/paper-reading-pt-1/" title="RL Post Training Paper Reading01">RL Post Training Paper Reading01</a><time datetime="2025-11-13T08:20:30.067Z" title="发表于 2025-11-13 16:20:30">2025-11-13</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Harry-Guang2202</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.2"></script><script src="/js/main.js?v=5.5.2"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css')
+    if (true) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div></div></body></html>
