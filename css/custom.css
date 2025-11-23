@@ -58,7 +58,7 @@
 #page-header.post-bg #site-info,
 #nav {
   z-index: 999 !important;
-  position: relative;
+  /* position: relative;
   /* 加一点文字阴影，保证在浅色图片上也看清字 */
   text-shadow: 0 0 8px rgba(0,0,0,0.6);
 }
