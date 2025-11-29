@@ -1,0 +1,134 @@
+/* ============================================================
+   Typography.css - 专门负责文章内部的排版美化
+   包含：引用块(Blockquote)、标题(H1-H6)、选中色
+   ============================================================ */
+
+/* ----------------------------------
+   1. 酷炫引用块 (清华紫定制版)
+   ---------------------------------- */
+#article-container blockquote {
+  /* 背景：极淡的紫丁香色，看着很舒服 */
+  background-color: #f9f2fb;
+  
+  /* 左侧条：标准的清华紫 (#660874) */
+  border-left: 5px solid #660874;
+  
+  border-radius: 6px;
+  padding: 15px 20px;
+  margin: 20px 0;
+  color: #4c4948;
+  position: relative;
+  
+  /* 阴影：带一点点紫色调的阴影 */
+  box-shadow: 0 4px 8px rgba(102, 8, 116, 0.05);
+  transition: all 0.3s ease-in-out;
+}
+
+/* 悬停动效 */
+#article-container blockquote:hover {
+  transform: translateY(-2px);
+  /* 悬停时阴影加深 */
+  box-shadow: 0 8px 16px rgba(102, 8, 116, 0.15);
+  /* 悬停时左侧条变亮一点，增加交互感 */
+  border-left-color: #9c27b0; 
+}
+
+/* 装饰性引号图标 */
+#article-container blockquote::before {
+  content: "\f10d"; /* FontAwesome 引号 */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  
+  /* 图标也变成清华紫，但透明度低一点 */
+  color: #660874;
+  opacity: 0.1;
+  
+  font-size: 24px;
+  pointer-events: none;
+}
+
+/* 修正文字层级 */
+#article-container blockquote p {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+}
+
+
+
+
+/* H2 - 底部渐变线 + 图标 */
+#article-container h2 {
+  font-weight: bold;
+  color: #1f2d3d;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eaecef;
+  position: relative;
+  margin-top: 40px;
+}
+
+/* H2 底部动态高亮条 */
+#article-container h2::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 20%;
+  height: 3px;
+  background: linear-gradient(to right, #49b1f5, #00c4b6);
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+/* H2 悬停拉长 */
+#article-container h2:hover::after {
+  width: 100%;
+}
+
+/* H2 前面的图标 */
+#article-container h2::before {
+  content: '\f02e'; /* 书签图标 */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  color: #49b1f5;
+  margin-right: 8px;
+  font-size: 0.8em;
+}
+
+/* H3 - 左侧竖线风格 */
+#article-container h3 {
+  color: #344c67;
+  font-size: 1.3em;
+  padding-left: 12px;
+  border-left: 4px solid #49b1f5;
+  background: linear-gradient(to right, rgba(73, 177, 245, 0.1), transparent);
+  margin-top: 30px;
+  line-height: 1.5;
+}
+
+/* H4 - 简约圆点 */
+#article-container h4 {
+  color: #4c4948;
+  padding-left: 10px;
+}
+#article-container h4::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #00c4b6;
+  border-radius: 50%;
+  margin-right: 8px;
+  transform: translateY(-2px);
+}
+
+/* ----------------------------------
+   3. 全局选中色 (科技蓝)
+   ---------------------------------- */
+::selection {
+  background: #49b1f5;
+  color: #fff;
+}
