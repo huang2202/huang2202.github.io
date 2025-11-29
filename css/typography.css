@@ -33,6 +33,19 @@
   border-left-color: #9c27b0; 
 }
 
+/* --- 新增：悬停时文字强调 --- */
+#article-container blockquote:hover p {
+  /* 1. 颜色变化：从灰黑变成深邃的紫黑色，对比度更高 */
+  color: #2e0233; 
+  
+  /* 2. 伪加粗：通过极微小的文字阴影实现"加粗"效果 */
+  /* (直接用 font-weight: bold 会导致文字排版跳动，体验不好，用 shadow 最好) */
+  text-shadow: 0 0 0.5px rgba(102, 8, 116, 0.4);
+  
+  /* 3. 平滑过渡 */
+  transition: all 0.3s ease-in-out;
+}
+
 /* 装饰性引号图标 */
 #article-container blockquote::before {
   content: "\f10d"; /* FontAwesome 引号 */
