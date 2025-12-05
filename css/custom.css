@@ -1,0 +1,64 @@
+#page-header.post-bg {
+  /* 关键：让背景图完整显示，不裁剪 (Contain) */
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  
+  /* 兜底背景色 (深灰)，图片加载前显示 */
+  background-color: #333 !important;
+  
+  /* 开启定位上下文 */
+  position: relative;
+  z-index: 1;
+  
+  /* 强制去除默认的 attachment，防止移动端错乱 */
+  background-attachment: scroll !important;
+} 
+
+
+#page-header.post-bg:before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  
+  /* 继承父元素的 URL */
+  background-image: inherit;
+  
+  /* 铺满模式 (Cover) */
+  background-size: cover !important;
+  background-position: center !important;
+  
+  /* 模糊 + 压暗 */
+  filter: blur(20px) brightness(0.6);
+  -webkit-filter: blur(20px) brightness(0.6);
+  
+  z-index: -1; /* 放在最底下 */
+  pointer-events: none; /* 允许鼠标穿透 */
+}
+
+/* 3. 顶层 (After)：清晰的完整图片 */
+#page-header.post-bg:after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  
+  /* 继承父元素的 URL */
+  background-image: inherit;
+  
+  /* 完整显示模式 (Contain) */
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  
+  z-index: 1; /* 放在模糊层上面 */
+  pointer-events: none; /* 允许鼠标穿透 */
+}
+
+#page-header.post-bg #post-info,
+#page-header.post-bg #site-info,
+#nav {
+  z-index: 999 !important;
+  /* position: relative;
+  /* 加一点文字阴影，保证在浅色图片上也看清字 */
+  text-shadow: 0 0 8px rgba(0,0,0,0.6);
+}
