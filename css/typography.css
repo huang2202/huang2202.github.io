@@ -191,3 +191,54 @@
   display: flex;
   align-items: center;
 }
+
+/* ==================================
+   7. 文章摘要框 (Description Box)
+   ================================== */
+.post-description-box {
+  /* 布局 */
+  display: flex;
+  align-items: flex-start;
+  margin: 20px 0 30px 0; /* 上下留白 */
+  padding: 15px 20px;
+  
+  /* 风格：清华紫淡雅背景 */
+  background: linear-gradient(to right, rgba(102, 8, 116, 0.03), rgba(102, 8, 116, 0.08));
+  border-radius: 8px;
+  border-left: 4px solid #660874; /* 左侧强强调色 */
+  
+  /* 动效 */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 悬停微动效 */
+.post-description-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 8, 116, 0.1);
+}
+
+/* 左侧图标 */
+.post-description-box .desc-icon {
+  margin-right: 15px;
+  color: #660874; /* 图标紫色 */
+  font-size: 1.2em;
+  opacity: 0.6;
+}
+
+/* 右侧文字 */
+.post-description-box .desc-text {
+  color: #4c4948;
+  font-size: 0.95em; /* 稍微比正文小一点点，显精致 */
+  line-height: 1.6;
+  font-style: italic; /* 斜体，更有"导读"的感觉 */
+  text-align: justify; /* 两端对齐 */
+}
+
+/* 适配深色模式 (Butterfly 自带的深色类名通常是 [data-theme="dark"]) */
+[data-theme="dark"] .post-description-box {
+  background: rgba(102, 8, 116, 0.15); /* 深色模式下背景稍微深一点 */
+  color: #ccc;
+}
+[data-theme="dark"] .post-description-box .desc-text {
+  color: #ddd;
+}
