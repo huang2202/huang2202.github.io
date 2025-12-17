@@ -1,12 +1,11 @@
 /* ============================================================
-   Typography.css - 文章排版美化 (完整修复版)
-   包含：引用块、标题、选中色、代码框内饰、表格、以及【折叠修复】
+   Typography.css - 终极整合版
+   包含：引用块、标题、代码框(原生Mac适配)、表格(防误伤)、头像放大
    ============================================================ */
 
 /* ----------------------------------
    1. 酷炫引用块 (清华紫定制版)
    ---------------------------------- */
-
 #article-container blockquote {
   background-color: #f9f2fb;
   border-left: 5px solid #660874;
@@ -116,129 +115,65 @@
   background-color: #49b1f5;
 }
 
-
-
-
-/* ==================================
+/* ----------------------------------
    5. 表格美化 (淡雅清华紫 - 防误伤版)
-   ================================== */
-
-/* 核心技巧：使用 :not(.highlight) > table
-   意思是：只选择那些【父元素不是 .highlight 类】的表格
-   这样就完美避开了代码块内部的表格！ */
-
-/* --- 表格整体容器 --- */
+   ---------------------------------- */
+/* 只选中文章正文里的表格，不选中代码块里的表格 */
 #article-container :not(.highlight) > table {
-  width: 100%;
-  border-spacing: 0;
-  border-collapse: separate;
-  border-radius: 8px;
-  overflow: hidden;
+  width: 100%; border-spacing: 0; border-collapse: separate;
+  border-radius: 8px; overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  margin: 20px 0;
-  border: 1px solid #e1e4e8;
-  display: table;
+  margin: 20px 0; border: 1px solid #e1e4e8; display: table;
 }
-
-/* --- 表头 (Header) --- */
 #article-container :not(.highlight) > table th {
   background: linear-gradient(to right, rgba(102, 8, 116, 0.1), rgba(102, 8, 116, 0.2));
-  color: #660874; 
-  padding: 12px 15px;
-  text-align: left;
-  font-weight: bold;
+  color: #660874; padding: 12px 15px; text-align: left; font-weight: bold;
   border-bottom: 2px solid rgba(102, 8, 116, 0.3);
   text-shadow: 1px 1px 0 #fff;
 }
-
-/* --- 单元格 (Cells) --- */
 #article-container :not(.highlight) > table td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #f0f0f0;
-  border-left: none;
-  border-right: none;
-  color: #4c4948;
-  transition: all 0.2s ease;
+  padding: 12px 15px; border-bottom: 1px solid #f0f0f0;
+  color: #4c4948; transition: all 0.2s ease;
 }
-
-/* --- 斑马纹 --- */
-#article-container :not(.highlight) > table tr:nth-child(even) td {
-  background-color: #fcfaff; 
-}
-
-/* --- 悬停效果 --- */
+#article-container :not(.highlight) > table tr:nth-child(even) td { background-color: #fcfaff; }
 #article-container :not(.highlight) > table tr:hover td {
-  background-color: #f3e5f5 !important;
-  color: #2e0233;
+  background-color: #f3e5f5 !important; color: #2e0233;
+}
+#article-container :not(.highlight) > table tr:last-child td { border-bottom: none; }
+
+/* ----------------------------------
+   6. 修复代码块折叠功能 (核武器版 - 必须保留！)
+   ---------------------------------- */
+#article-container .highlight-wrap.closed > figure.highlight,
+#article-container .highlight-wrap.closed > table, 
+#article-container .highlight-wrap.closed > .code-box {
+  display: none !important;
+}
+#article-container .highlight-wrap.closed {
+  height: 35px !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
 }
 
-/* --- 细节修复 --- */
-#article-container :not(.highlight) > table tr:last-child td {
-  border-bottom: none;
-}
-
-/* --- 顶部工具栏 (Header) --- */
-#article-container .highlight-tools {
-  /* 渐变深色背景 */
-  background: linear-gradient(to right, #2c3e50, #34495e) !important;
-  color: #fff; /* 文字变白 */
-  height: 35px; 
-  border-bottom: none;
-  position: relative; 
-
-
-  /* 确保文字垂直居中 */
-  display: flex;
-  align-items: center;
-}
-
-/* ==================================
+/* ----------------------------------
    7. 文章摘要框 (Description Box)
-   ================================== */
+   ---------------------------------- */
 .post-description-box {
-  /* 布局 */
-  display: flex;
-  align-items: flex-start;
-  margin: 20px 0 30px 0; /* 上下留白 */
-  padding: 15px 20px;
-  
-  /* 风格：清华紫淡雅背景 */
+  display: flex; align-items: flex-start;
+  margin: 20px 0 30px 0; padding: 15px 20px;
   background: linear-gradient(to right, rgba(102, 8, 116, 0.03), rgba(102, 8, 116, 0.08));
-  border-radius: 8px;
-  border-left: 4px solid #660874; /* 左侧强强调色 */
-  
-  /* 动效 */
+  border-radius: 8px; border-left: 4px solid #660874;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
-/* 悬停微动效 */
 .post-description-box:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 8, 116, 0.1);
+  transform: translateY(-2px); box-shadow: 0 4px 12px rgba(102, 8, 116, 0.1);
 }
-
-/* 左侧图标 */
 .post-description-box .desc-icon {
-  margin-right: 15px;
-  color: #660874; /* 图标紫色 */
-  font-size: 1.2em;
-  opacity: 0.6;
+  margin-right: 15px; color: #660874; font-size: 1.2em; opacity: 0.6;
 }
-
-/* 右侧文字 */
 .post-description-box .desc-text {
-  color: #4c4948;
-  font-size: 0.95em; /* 稍微比正文小一点点，显精致 */
-  line-height: 1.6;
-  font-style: italic; /* 斜体，更有"导读"的感觉 */
-  text-align: justify; /* 两端对齐 */
+  color: #4c4948; font-size: 0.95em; line-height: 1.6;
+  font-style: italic; text-align: justify;
 }
 
-/* 适配深色模式 (Butterfly 自带的深色类名通常是 [data-theme="dark"]) */
-[data-theme="dark"] .post-description-box {
-  background: rgba(102, 8, 116, 0.15); /* 深色模式下背景稍微深一点 */
-  color: #ccc;
-}
-[data-theme="dark"] .post-description-box .desc-text {
-  color: #ddd;
-}
