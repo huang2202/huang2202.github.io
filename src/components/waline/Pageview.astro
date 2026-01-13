@@ -16,7 +16,7 @@ import config from '@/site-config'
       if (el) {
         pageview.pageviewCount({
           serverURL: walineServer,
-          path: window.location.pathname
+          path: `${window.location.host}${window.location.pathname}`
         })
       }
     } catch (e) {

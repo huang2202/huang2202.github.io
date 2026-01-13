@@ -10,7 +10,7 @@ interface Props {
 
 const { view, comment, class: className, ...props } = Astro.props
 
-const path = Astro.url.pathname
+const path = Astro.url.host ? `${Astro.url.host}${Astro.url.pathname}` : Astro.url.pathname
 ---
 
 <div class={cn('text-base text-sm text-muted-foreground', className)} {...props}>
