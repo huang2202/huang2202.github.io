@@ -14,6 +14,16 @@ const {
   remarkPluginFrontmatter
 } = Astro.props
 
+const heroImageAssetProps: Record<string, unknown> | undefined = heroImage
+  ? { src: heroImage.src }
+  : undefined
+
+if (heroImage && heroImageAssetProps) {
+  if (heroImage.inferSize !== undefined) heroImageAssetProps.inferSize = heroImage.inferSize
+  if (heroImage.width !== undefined) heroImageAssetProps.width = heroImage.width
+  if (heroImage.height !== undefined) heroImageAssetProps.height = heroImage.height
+}
+
 const dateTimeOptions: Intl.DateTimeFormatOptions = {
   month: 'short'
 }
@@ -27,7 +37,7 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
         class='cover-image relative z-10 h-auto w-full max-w-[65ch] rounded-2xl object-contain'
         fetchpriority='high'
         loading='eager'
-        {...heroImage}
+        {...(heroImageAssetProps as any)}
       />
       <Image
         alt='Blur image'
@@ -35,7 +45,7 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
         loading='eager'
         id='blurImage'
         class='absolute end-0 top-4 z-0 mt-0 h-full max-w-[65ch] rounded-3xl opacity-60 transition-opacity duration-300'
-        {...heroImage}
+        {...(heroImageAssetProps as any)}
       />
     </div>
   )

@@ -12,8 +12,8 @@
         },
         {
           "name": "Bertsin Home",
-          "url": "https://user-xixiboliya.github.io/",
-          "desc": "神秘小天地",
+          "intro": "神秘小天地",
+          "link": "https://user-xixiboliya.github.io/",
           "avatar": "https://raw.githubusercontent.com/user-xixiboliya/user-xixiboliya.github.io/main/static/avatar/avatar.jpg"
         }
       ]
