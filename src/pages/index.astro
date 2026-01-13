@@ -1,23 +1,25 @@
 ---
 import { Image } from 'astro:assets'
 
-import { Quote } from 'astro-pure/advanced'
-import { PostPreview } from 'astro-pure/components/pages'
-import { getBlogCollection, sortMDByDate } from 'astro-pure/server'
-import { Button, Card, Icon, Label } from 'astro-pure/user'
+import { getBlogCollection } from 'astro-pure/server'
+import { Button, Card, Icon } from 'astro-pure/user'
 import PageLayout from '@/layouts/BaseLayout.astro'
-import ProjectCard from '@/components/home/ProjectCard.astro'
 import Section from '@/components/home/Section.astro'
-import SkillLayout from '@/components/home/SkillLayout.astro'
 import config from '@/site-config'
 
-const languages = ['Html', 'JavaScript', 'CSS', 'Shell']
-const frontend = ['TypeScript', 'Vite', 'Webpack', 'Astro']
-const backend = ['Vercel', 'Waline']
-
-const MAX_POSTS = 10
+// 统计数据
 const allPosts = await getBlogCollection()
-const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
+const totalPosts = allPosts.length
+const totalWords = allPosts.reduce((acc, post) => {
+  const content = post.body || ''
+  return acc + content.length
+}, 0)
+const totalWordsDisplay = totalWords > 10000 ? `${(totalWords / 10000).toFixed(1)}w` : totalWords.toString()
+
+// 计算网站上线天数 (可以改成你的网站上线日期)
+const siteStartDate = new Date('2025-11-10')
+const today = new Date()
+const daysOnline = Math.floor((today.getTime() - siteStartDate.getTime()) / (1000 * 60 * 60 * 24))
 
 const imagePath = config.logo.src
 const images = import.meta.glob<{ default: ImageMetadata }>(
@@ -29,169 +31,123 @@ if (!images[imagePath])
   )
 ---
 
-<PageLayout meta={{ title: 'Home' }} highlightColor='#659EB9'>
+<PageLayout meta={{ title: 'Home', description: config.description }} highlightColor='#659EB9'>
   <main class='flex w-full flex-col items-center'>
-    <section class='animate mb-10 flex flex-col items-center gap-y-7' id='content-header'>
+    <!-- Header: Avatar + Name + Social Links -->
+    <section class='animate mb-10 flex flex-col items-center gap-y-5 sm:flex-row sm:gap-x-8' id='content-header'>
       <Image
         src={images[imagePath]()}
         alt={config.logo.alt || 'Profile'}
-        class='h-28 w-auto rounded-full border p-1'
+        class='h-32 w-32 rounded-lg object-cover'
         loading='eager'
         fetchpriority='high'
       />
 
-      <div class='flex flex-col items-center gap-y-4'>
-        <h1 class='text-3xl font-medium'>{config.author}</h1>
-        <div class='flex flex-wrap justify-center gap-x-7 gap-y-3'>
-          <Label title='Somewhere'>
-            <Icon name='location' class='size-5' slot='icon' />
-          </Label>
-          <Label
-            title='Source code'
-            as='a'
-            href='https://github.com/cworld1/astro-theme-pure'
-            target='_blank'
+      <div class='flex flex-col items-center gap-y-4 sm:items-start'>
+        <h1 class='text-3xl font-bold'>{config.author}</h1>
+        <div class='flex flex-wrap justify-center gap-2 sm:justify-start'>
+          <!-- TODO: 修改为你自己的社交链接 -->
+          <a
+            href='#'
+            class='inline-flex items-center gap-1.5 rounded-full border bg-background px-3 py-1.5 text-sm transition-colors hover:bg-muted'
           >
-            <Icon name='github' class='size-5' slot='icon' />
-          </Label>
+            <Icon name='location' class='size-4' />
+            <span>China</span>
+          </a>
+          <a
+            href='https://github.com/huang2202'
+            target='_blank'
+            class='inline-flex items-center gap-1.5 rounded-full border bg-background px-3 py-1.5 text-sm transition-colors hover:bg-muted'
+          >
+            <Icon name='github' class='size-4' />
+            <span>Github</span>
+          </a>
+          <a
+            href='mailto:zju_hgy@163.com'
+            class='inline-flex items-center gap-1.5 rounded-full border bg-background px-3 py-1.5 text-sm transition-colors hover:bg-muted'
+          >
+            <Icon name='email' class='size-4' />
+            <span>Email</span>
+          </a>
+          <a
+            href='https://scholar.google.com/'
+            target='_blank'
+            class='inline-flex items-center gap-1.5 rounded-full border bg-background px-3 py-1.5 text-sm transition-colors hover:bg-muted'
+          >
+            <svg class='size-4' viewBox='0 0 24 24' fill='currentColor'>
+              <path d='M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14Zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5 12 0Z'/>
+            </svg>
+            <span>Scholar</span>
+          </a>
         </div>
       </div>
-
-      {/* Get template */}
-      <a
-        href='https://github.com/cworld1/astro-theme-pure'
-        target='_blank'
-        class='flex flex-row items-center gap-x-3 rounded-full border bg-background px-4 py-2 text-sm shadow-sm transition-shadow hover:shadow-md'
-      >
-        <span class='relative flex items-center justify-center'>
-          <span
-            class='absolute size-2 animate-ping rounded-full border border-green-400 bg-green-400 opacity-75'
-          ></span>
-          <span class='size-2 rounded-full bg-green-400'></span>
-        </span>
-        <p class='font-medium text-muted-foreground'>Get Template</p>
-      </a>
     </section>
 
-    <div id='content' class='animate flex flex-col gap-y-10 md:w-4/5 lg:w-5/6'>
+    <div id='content' class='animate flex w-full flex-col gap-y-10 md:w-4/5 lg:w-5/6'>
+      <!-- About Section -->
       <Section title='About'>
-        <p class='text-muted-foreground'>Developer / Designer</p>
         <p class='text-muted-foreground'>
-          Lorem ipsum dolor sit amet, vidit suscipit at mei. Quem denique mea id. Usu ei regione
-          indoctum dissentiunt, cu meliore fuisset mei, vel quod voluptua ne. Ex dicat impedit mel,
-          at eum oratio possit voluptatum.
+          <!-- TODO: 修改为你自己的简介 -->
+          学生 / Researcher
+        </p>
+        <p class='text-muted-foreground'>
+          我是本科就读于西安交通大学人工智能专业，目前大四在浙江大学提前进组工作中，后准备前往ZGCA加入项目组，interested in Embodied AI and RL。
         </p>
         <Button title='More about me' class='w-fit self-end' href='/about' variant='ahead' />
       </Section>
-      {
-        allPostsByDate.length > 0 && (
-          <Section title='Posts'>
-            <ul class='flex flex-col gap-y-1.5 sm:gap-y-2'>
-              {allPostsByDate.map((p) => (
-                <li class='flex flex-col gap-x-2 sm:flex-row'>
-                  <PostPreview post={p} />
-                </li>
-              ))}
-            </ul>
-            <Button title='More posts' class='w-fit self-end' href='/blog' variant='ahead' />
-          </Section>
-        )
-      }
 
-      {
-        /* <Section title='Experience'>
-      <Card
-        heading='Lorem Ipsum'
-        subheading='Sit amet consectetur'
-        date='Dec 2022 - Nov 2023'
-        imagePath='/src/assets/about-astro.png'
-        altText='Lorem, ipsum dolor sit'
-        imageClass='h-12 w-auto md:-start-16'
-      >
-        <ul class='ms-4 list-disc text-muted-foreground'>
-          <li>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore debitis recusandae, ut
-            molestiae laboriosam pariatur!
-
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, pariatur!</li>
-          </li>
-        </ul>
-      </Card>
-      <Card
-        heading='Lorem Ipsum'
-        subheading='Sit amet consectetur'
-        date='Dec 2022 - Nov 2023'
-        imagePath='/src/assets/about-astro.png'
-        altText='Lorem, ipsum dolor sit'
-        imageClass='h-12 w-auto md:-start-16'
-      />
-    </Section> */
-      }
+      <!-- Education Section -->
       <Section title='Education'>
+        <!-- TODO: 修改为你自己的教育/工作经历 -->
         <Card
-          as='a'
-          heading='Lorem ipsum'
-          subheading='Lorem ipsum dolor sit amet, vidit suscipit at mei.'
-          date='August 2021 - July 2025'
-          href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-        >
-          {
-            /* <ul class='ms-4 list-disc text-muted-foreground'>
-          <li>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore debitis recusandae, ut
-            molestiae laboriosam pariatur!
-          </li>
-          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, pariatur!</li>
-        </ul> */
-          }
-        </Card>
-      </Section>
-
-      <Section title='Website List'>
-        <div class='grid grid-cols-1 gap-3 sm:grid-cols-2'>
-          <ProjectCard
-            href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-            heading='Lorem ipsum'
-            subheading='Do not go gentle into that good night'
-            imagePath='/src/assets/projects/1.avif'
-          />
-          <ProjectCard
-            href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-            heading='Lorem ipsum'
-            subheading='Old age burn and rave at close of day'
-            imagePath='/src/assets/projects/2.avif'
-          />
-          <ProjectCard
-            href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-            heading='Lorem ipsum'
-            subheading='Rage, rage against the dying of the light'
-            imagePath='/src/assets/projects/3.avif'
-          />
-          <ProjectCard
-            href='/projects'
-            heading='More projects'
-            subheading='Check out more projects'
-            imagePath='/src/assets/projects/4.avif'
-          />
-        </div>
-      </Section>
-
-      <Section title='Certifications'>
+          heading='浙江大学CAG&CG实验室'
+          subheading='直博生'
+          date='Sep 2025 - Present'
+        />
         <Card
-          as='a'
-          heading='Lorem ipsum'
-          subheading='Lorem ipsum dolor sit amet, vidit suscipit at mei. Quem denique mea id. Usu ei regione indoctum dissentiunt, cu meliore fuisset mei, vel quod voluptua ne. Ex dicat impedit mel, at eum oratio possit voluptatum. Dicat ceteros cu vim. Impetus fuisset ullamcorper pri cu, his posse iisque ad, aliquam honestatis usu id.'
-          date='July 2024'
-          href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+          heading='西安交通大学'
+          subheading='人工智能专业，本科'
+          date='Sep 2022 - Sep 2026'
         />
       </Section>
 
-      <Section title='Skills'>
-        <SkillLayout title='Languages' skills={languages} />
-        <SkillLayout title='Frontend' skills={frontend} />
-        <SkillLayout title='Backend' skills={backend} />
+      <!-- Statistics Section -->
+      <Section title='Statistics'>
+        <div class='grid grid-cols-3 gap-4'>
+          <div class='flex flex-col items-center rounded-lg border bg-background p-4'>
+            <svg class='mb-2 size-5 text-muted-foreground' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'>
+              <circle cx='12' cy='12' r='10'/>
+              <polyline points='12,6 12,12 16,14'/>
+            </svg>
+            <span class='text-2xl font-bold'>{daysOnline}</span>
+            <span class='text-sm text-muted-foreground'>Days Online</span>
+          </div>
+          <div class='flex flex-col items-center rounded-lg border bg-background p-4'>
+            <svg class='mb-2 size-5 text-muted-foreground' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'>
+              <rect x='3' y='4' width='18' height='18' rx='2' ry='2'/>
+              <line x1='16' y1='2' x2='16' y2='6'/>
+              <line x1='8' y1='2' x2='8' y2='6'/>
+              <line x1='3' y1='10' x2='21' y2='10'/>
+            </svg>
+            <span class='text-2xl font-bold'>{today.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+            <span class='text-sm text-muted-foreground'>Last Updated</span>
+          </div>
+          <div class='flex flex-col items-center rounded-lg border bg-background p-4'>
+            <svg class='mb-2 size-5 text-muted-foreground' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'>
+              <path d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/>
+              <polyline points='14,2 14,8 20,8'/>
+              <line x1='16' y1='13' x2='8' y2='13'/>
+              <line x1='16' y1='17' x2='8' y2='17'/>
+            </svg>
+            <span class='text-2xl font-bold'>{totalWordsDisplay}</span>
+            <span class='text-sm text-muted-foreground'>Total Words</span>
+          </div>
+        </div>
+        <div class='mt-4 flex items-center justify-between text-sm text-muted-foreground'>
+          <span>Total Posts</span>
+          <span class='font-medium'>{totalPosts}</span>
+        </div>
       </Section>
     </div>
-    <Quote class='mt-12' />
   </main>
 </PageLayout>

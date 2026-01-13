@@ -1,5 +1,6 @@
 import { z } from 'astro/zod'
 
+import { Icons } from '../libs/icons'
 import { FaviconSchema } from '../schemas/favicon'
 import { HeadConfigSchema } from '../schemas/head'
 import { HeaderMenuSchema } from '../schemas/header'
@@ -7,6 +8,10 @@ import { LocaleConfigSchema } from '../schemas/locale'
 import { LogoConfigSchema } from '../schemas/logo'
 import { ShareSchema } from '../schemas/share'
 import { SocialLinksSchema } from '../schemas/social'
+
+const IconNameSchema = z
+  .string()
+  .refine((v): v is keyof typeof Icons => v in Icons, { message: 'Invalid icon name' })
 
 export const ThemeConfigSchema = () =>
   z.object({
@@ -179,6 +184,17 @@ export const ThemeConfigSchema = () =>
           .optional()
           .describe('Properties for the external links element')
       }),
+
+      categories: z
+        .array(
+          z.object({
+            title: z.string(),
+            slug: z.string(),
+            icon: IconNameSchema.optional()
+          })
+        )
+        .optional()
+        .default([]),
 
       /** Blog page size for pagination */
       blogPageSize: z.number().optional().default(8),

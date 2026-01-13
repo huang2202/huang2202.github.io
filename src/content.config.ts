@@ -1,5 +1,6 @@
 import { glob } from 'astro/loaders'
 import { defineCollection, z } from 'astro:content'
+import { theme } from './site.config'
 
 function removeDupsAndLowerCase(array: string[]) {
   if (!array.length) return array
@@ -7,6 +8,18 @@ function removeDupsAndLowerCase(array: string[]) {
   const distinctItems = new Set(lowercaseItems)
   return Array.from(distinctItems)
 }
+
+function normalizeCategorySlug(value: string) {
+  return value.trim().toLowerCase().replace(/\s+/g, '-').replace(/\/+$/g, '')
+}
+
+function normalizeCategories(values: string[]) {
+  if (!values.length) return values
+  const normalized = values.map(normalizeCategorySlug)
+  return Array.from(new Set(normalized))
+}
+
+const allowedCategorySlugs = new Set((theme.content.categories ?? []).map((c) => c.slug))
 
 // Define blog collection
 const blog = defineCollection({
@@ -23,7 +36,7 @@ const blog = defineCollection({
       updatedDate: z.coerce.date().optional(),
       heroImage: z
         .object({
-          src: image(),
+          src: z.union([image(), z.string()]),
           alt: z.string().optional(),
           inferSize: z.boolean().optional(),
           width: z.number().optional(),
@@ -32,6 +45,15 @@ const blog = defineCollection({
           color: z.string().optional()
         })
         .optional(),
+      categories: z
+        .array(z.string())
+        .default([])
+        .transform(normalizeCategories)
+        .refine(
+          (values) =>
+            allowedCategorySlugs.size === 0 || values.every((v) => allowedCategorySlugs.has(v)),
+          { message: 'Invalid category' }
+        ),
       tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
       language: z.string().optional(),
       draft: z.boolean().default(false),

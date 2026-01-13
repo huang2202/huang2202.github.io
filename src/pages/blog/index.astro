@@ -1,0 +1,17 @@
+---
+import config from '@/site-config'
+
+export const prerender = true
+
+const defaultCategory = config.content.categories?.[0]?.slug ?? 'research'
+const target = `/blog/${defaultCategory}`
+---
+
+<head>
+  <meta http-equiv='refresh' content={`0;url=${target}`} />
+  <link rel='canonical' href={target} />
+</head>
+
+<p>
+  Redirecting to <a href={target}>{target}</a>...
+</p>

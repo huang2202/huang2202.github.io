@@ -3,11 +3,11 @@ import type { CardListData, Config, IntegrationUserConfig, ThemeUserConfig } fro
 export const theme: ThemeUserConfig = {
   // [Basic]
   /** Title for your website. Will be used in metadata and as browser tab title. */
-  title: 'Astro Theme Pure',
+  title: 'Lumin Space',
   /** Will be used in index page & copyright declaration */
-  author: 'Pure Lab',
+  author: 'Harry-Guang',
   /** Description metadata for your website. Can be used in page metadata. */
-  description: 'Stay hungry, stay foolish',
+  description: 'Journey to the North Star',
   /** The default favicon for your site which should be a path to an image in the `public/` directory. */
   favicon: '/favicon/favicon.ico',
   /** The default social card image for your site which should be a path to an image in the `public/` directory. */
@@ -26,7 +26,7 @@ export const theme: ThemeUserConfig = {
   },
   /** Set a logo image to show in the homepage. */
   logo: {
-    src: '/src/assets/avatar.png',
+    src: '/src/assets/nova.png',
     alt: 'Avatar'
   },
 
@@ -49,8 +49,8 @@ export const theme: ThemeUserConfig = {
   header: {
     menu: [
       { title: 'Blog', link: '/blog' },
-      { title: 'Docs', link: '/docs' },
-      { title: 'Projects', link: '/projects' },
+      { title: 'Academic', link: '/academic' },
+      // { title: 'Projects', link: '/projects' },
       { title: 'Links', link: '/links' },
       { title: 'About', link: '/about' }
     ]
@@ -78,7 +78,7 @@ export const theme: ThemeUserConfig = {
     /** Enable displaying a “Astro & Pure theme powered” link in your site’s footer. */
     credits: true,
     /** Optional details about the social media accounts for this site. */
-    social: { github: 'https://github.com/cworld1/astro-theme-pure' }
+    social: { github: 'https://github.com/huang2202' }
   },
 
   // [Content]
@@ -91,6 +91,12 @@ export const theme: ThemeUserConfig = {
         style: 'user-select:none'
       }
     },
+    categories: [
+      { title: 'Research', slug: 'research', icon: 'document' },
+      { title: 'Technical', slug: 'technical', icon: 'computer' },
+      { title: 'Daily Life', slug: 'daily-life', icon: 'calendar' },
+      { title: 'Theory', slug: 'theory', icon: 'bulb' }
+    ],
     /** Blog page size for pagination (optional) */
     blogPageSize: 8,
     // Currently support weibo, x, bluesky
@@ -114,8 +120,8 @@ export const integ: IntegrationUserConfig = {
     applyTip: [
       { name: 'Name', val: theme.title },
       { name: 'Desc', val: theme.description || 'Null' },
-      { name: 'Link', val: 'https://astro-pure.js.org/' },
-      { name: 'Avatar', val: 'https://astro-pure.js.org/favicon/favicon.ico' }
+      { name: 'Link', val: 'https://huang2202.github.io' },
+      { name: 'Avatar', val: 'https://huang2202.github.io/avatar.png' }
     ],
     // Cache avatars in `public/avatars/` to improve user experience.
     cacheAvatar: false

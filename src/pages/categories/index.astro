@@ -1,0 +1,59 @@
+---
+import { getBlogCollection } from 'astro-pure/server'
+import { Button } from 'astro-pure/user'
+import { cn } from 'astro-pure/utils'
+import PageLayout from '@/layouts/BaseLayout.astro'
+import config from '@/site-config'
+
+const allPosts = await getBlogCollection()
+const predefinedCategories = config.content.categories ?? []
+
+const categoryCounts = allPosts.reduce((acc, post) => {
+  for (const c of post.data.categories) {
+    acc.set(c, (acc.get(c) || 0) + 1)
+  }
+  return acc
+}, new Map<string, number>())
+
+const categoriesWithCount = predefinedCategories.map((c) => [c, categoryCounts.get(c.slug) ?? 0] as const)
+
+const meta = {
+  description: "A list of all the categories I've written about in my posts",
+  title: 'All Categories'
+}
+---
+
+<PageLayout {meta}>
+  <Button title='Back' href='/blog' variant='back' />
+  <main class='mt-6 lg:mt-10'>
+    <div id='content-header' class='animate'>
+      <h1 class='mb-6 text-3xl font-medium'>Categories</h1>
+    </div>
+
+    <div id='content' class='animate'>
+      {
+        categoriesWithCount.length > 0 ? (
+          <ul class='flex flex-wrap gap-4'>
+            {categoriesWithCount.map(([category, val]) => (
+              <li>
+                <Button
+                  href={`/blog/${category.slug}`}
+                  variant='pill'
+                  class={cn(
+                    'items-start gap-x-1',
+                    val > 2 ? 'rounded-xl px-3 py-1 text-xl' : val > 1 && 'text-lg'
+                  )}
+                >
+                  {category.title}
+                  <span class={val > 2 ? 'text-base' : 'text-xs'}>{val}</span>
+                </Button>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>Any category yet.</p>
+        )
+      }
+    </div>
+  </main>
+</PageLayout>

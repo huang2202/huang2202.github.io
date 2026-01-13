@@ -2,6 +2,9 @@
 import config from 'virtual:config'
 
 import { Icon } from '../user'
+import type { Icons } from '../../libs/icons'
+
+const blogCategories = config.content.categories ?? []
 ---
 
 <header-component
@@ -20,17 +23,64 @@ import { Icon } from '../user'
       id='headerExpandContent'
       class='end-0 start-0 top-12 grid border border-transparent group-[.not-top]:rounded-xl group-[.expanded]:opacity-100 dark:group-[.expanded.not-top]:bg-muted max-sm:absolute max-sm:opacity-0 max-sm:group-[.not-top]:border-border max-sm:group-[.expanded.not-top]:bg-background max-sm:group-[.not-top]:px-4 max-sm:group-[.not-top]:py-2 sm:grid-rows-1'
     >
-      <div class='flex flex-col items-center justify-center overflow-hidden sm:flex-row'>
+      <div class='flex flex-col items-center justify-center overflow-visible sm:flex-row'>
         {
-          config.header.menu.map((item) => (
-            <a
-              href={item.link}
-              class='w-full flex-none grow py-2 text-right font-medium transition-none hover:text-primary sm:w-fit sm:px-3'
-              aria-label='Nav menu item'
-            >
-              {item.title}
-            </a>
-          ))
+          config.header.menu.map((item) =>
+            item.link === '/blog' && blogCategories.length ? (
+              <div class='relative group/blog w-full flex-none grow sm:w-fit'>
+                <a
+                  href={item.link}
+                  class='w-full flex-none grow py-2 text-right font-medium transition-none hover:text-primary sm:w-fit sm:px-3'
+                  aria-label='Nav menu item'
+                >
+                  <span class='inline-flex items-center justify-end gap-x-1'>
+                    {item.title}
+                    <svg
+                      class='size-3 transition-transform group-hover/blog:rotate-180 group-focus-within/blog:rotate-180'
+                      viewBox='0 0 20 20'
+                      fill='currentColor'
+                      aria-hidden='true'
+                    >
+                      <path
+                        fill-rule='evenodd'
+                        d='M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.168l3.71-3.938a.75.75 0 1 1 1.08 1.04l-4.24 4.5a.75.75 0 0 1-1.08 0l-4.24-4.5a.75.75 0 0 1 .02-1.06Z'
+                        clip-rule='evenodd'
+                      />
+                    </svg>
+                  </span>
+                </a>
+
+                <div
+                  class='invisible pointer-events-none absolute end-0 top-full z-50 mt-2 opacity-0 transition-opacity group-hover/blog:visible group-hover/blog:pointer-events-auto group-hover/blog:opacity-100 group-focus-within/blog:visible group-focus-within/blog:pointer-events-auto group-focus-within/blog:opacity-100'
+                >
+                  <div class='min-w-[16rem] rounded-2xl border bg-background p-4 shadow-lg'>
+                    <ul class='flex flex-col gap-3'>
+                      {blogCategories.map((c) => (
+                        <li>
+                          <a
+                            class='flex items-center gap-3 text-lg font-medium transition-none hover:text-primary'
+                            href={`/blog/${c.slug}`}
+                            aria-label={`View category ${c.title}`}
+                          >
+                            {c.icon && <Icon name={c.icon as keyof typeof Icons} class='size-5' />}
+                            <span>{c.title}</span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <a
+                href={item.link}
+                class='w-full flex-none grow py-2 text-right font-medium transition-none hover:text-primary sm:w-fit sm:px-3'
+                aria-label='Nav menu item'
+              >
+                {item.title}
+              </a>
+            )
+          )
         }
         <div class='flex w-full grow flex-row justify-end gap-x-3 sm:w-fit sm:gap-x-5'>
           <a class='px-1 py-2 transition-none sm:px-2' href='/search' title='Search'>

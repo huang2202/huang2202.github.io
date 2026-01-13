@@ -5,8 +5,9 @@ type Collections = CollectionEntry<CollectionKey>[]
 export const prod = import.meta.env.PROD
 
 /** Note: this function filters out draft posts based on the environment */
-export async function getBlogCollection(contentType: CollectionKey = 'blog') {
-  return await getCollection(contentType, ({ data }: CollectionEntry<typeof contentType>) => {
+export async function getBlogCollection<T extends CollectionKey = 'blog'>(contentType?: T) {
+  const type = (contentType ?? 'blog') as T
+  return await getCollection(type, ({ data }: CollectionEntry<T>) => {
     // Not in production & draft is not false
     return prod ? !data.draft : true
   })
@@ -37,7 +38,9 @@ export function groupCollectionsByYear<T extends CollectionKey>(
   ).sort((a, b) => b[0] - a[0])
 }
 
-export function sortMDByDate(collections: Collections): Collections {
+export function sortMDByDate<T extends CollectionKey>(
+  collections: CollectionEntry<T>[]
+): CollectionEntry<T>[] {
   return collections.sort((a, b) => {
     const aDate = new Date(a.data.updatedDate ?? a.data.publishDate ?? 0).valueOf()
     const bDate = new Date(b.data.updatedDate ?? b.data.publishDate ?? 0).valueOf()
@@ -60,6 +63,29 @@ export function getUniqueTagsWithCount(collections: Collections): [string, numbe
   return [
     ...getAllTags(collections).reduce(
       (acc, t) => acc.set(t, (acc.get(t) || 0) + 1),
+      new Map<string, number>()
+    )
+  ].sort((a, b) => b[1] - a[1])
+}
+
+/** Note: This function doesn't filter draft posts, pass it the result of getAllPosts above to do so. */
+export function getAllCategories(collections: Collections) {
+  return collections.flatMap((collection) => {
+    const categories = (collection.data as { categories?: string[] }).categories ?? []
+    return [...categories]
+  })
+}
+
+/** Note: This function doesn't filter draft posts, pass it the result of getAllPosts above to do so. */
+export function getUniqueCategories(collections: Collections) {
+  return [...new Set(getAllCategories(collections))]
+}
+
+/** Note: This function doesn't filter draft posts, pass it the result of getAllPosts above to do so. */
+export function getUniqueCategoriesWithCount(collections: Collections): [string, number][] {
+  return [
+    ...getAllCategories(collections).reduce(
+      (acc, c) => acc.set(c, (acc.get(c) || 0) + 1),
       new Map<string, number>()
     )
   ].sort((a, b) => b[1] - a[1])

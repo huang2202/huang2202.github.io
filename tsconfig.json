@@ -6,6 +6,7 @@
     "allowJs": true,
     // Building for a library
     "declaration": true,
+    "moduleResolution": "bundler",
     // Code runs in the DOM
     "lib": ["es2022", "dom", "dom.iterable"],
     // Type Imports

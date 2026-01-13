@@ -1,0 +1,165 @@
+---
+import type { GetStaticPaths, Page } from 'astro'
+import type { CollectionEntry } from 'astro:content'
+
+import { Paginator, PostPreview } from 'astro-pure/components/pages'
+import { getBlogCollection, sortMDByDate } from 'astro-pure/server'
+import { Button } from 'astro-pure/user'
+import PageLayout from '@/layouts/BaseLayout.astro'
+import config from '@/site-config'
+
+export const prerender = true
+
+const predefinedCategories = config.content.categories ?? []
+
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
+  const allPosts = await getBlogCollection()
+  const allPostsByDate = sortMDByDate(allPosts)
+  const categories = config.content.categories ?? []
+
+  return categories.flatMap((c) => {
+    const filterPosts = allPostsByDate.filter((post) => {
+      const categories = (post.data as { categories?: string[] }).categories ?? []
+      return categories.includes(c.slug)
+    })
+    return paginate(filterPosts, {
+      pageSize: config.content.blogPageSize,
+      params: { category: c.slug }
+    })
+  })
+}
+
+interface Props {
+  page: Page<CollectionEntry<'blog'>>
+}
+
+const { page } = Astro.props
+const { category } = Astro.params
+
+const currentIndex = predefinedCategories.findIndex((c) => c.slug === category)
+const currentCategory = predefinedCategories[currentIndex]
+const prevCategory = currentIndex > 0 ? predefinedCategories[currentIndex - 1] : null
+const nextCategory = currentIndex < predefinedCategories.length - 1 ? predefinedCategories[currentIndex + 1] : null
+
+const meta = {
+  description: `View all posts in the category - ${currentCategory?.title ?? category}`,
+  title: `${currentCategory?.title ?? category}`
+}
+
+const paginationProps = {
+  ...(page.url.prev && {
+    prevUrl: {
+      text: `← Previous`,
+      url: page.url.prev
+    }
+  }),
+  ...(page.url.next && {
+    nextUrl: {
+      text: `Next →`,
+      url: page.url.next
+    }
+  })
+}
+---
+
+<PageLayout {meta}>
+  <Button title='Back' href='/' variant='back' />
+  <main class='mt-6 lg:mt-10'>
+    <div id='content-header' class='animate'>
+      <h1 class='mb-6 flex items-center gap-x-3 text-3xl font-medium'>
+        <span>{currentCategory?.title ?? category}</span>
+        <span class='flex items-center gap-x-1'>
+          {prevCategory ? (
+            <a
+              href={`/blog/${prevCategory.slug}`}
+              class='p-1 rounded hover:bg-muted transition-colors'
+              aria-label={`Previous category: ${prevCategory.title}`}
+              data-astro-prefetch
+            >
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                width='20'
+                height='20'
+                viewBox='0 0 24 24'
+                fill='none'
+                stroke='currentColor'
+                stroke-width='2'
+                stroke-linecap='round'
+                stroke-linejoin='round'
+              >
+                <polyline points='18 15 12 9 6 15'></polyline>
+              </svg>
+            </a>
+          ) : (
+            <span class='p-1 opacity-30 cursor-not-allowed'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                width='20'
+                height='20'
+                viewBox='0 0 24 24'
+                fill='none'
+                stroke='currentColor'
+                stroke-width='2'
+                stroke-linecap='round'
+                stroke-linejoin='round'
+              >
+                <polyline points='18 15 12 9 6 15'></polyline>
+              </svg>
+            </span>
+          )}
+          {nextCategory ? (
+            <a
+              href={`/blog/${nextCategory.slug}`}
+              class='p-1 rounded hover:bg-muted transition-colors'
+              aria-label={`Next category: ${nextCategory.title}`}
+              data-astro-prefetch
+            >
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                width='20'
+                height='20'
+                viewBox='0 0 24 24'
+                fill='none'
+                stroke='currentColor'
+                stroke-width='2'
+                stroke-linecap='round'
+                stroke-linejoin='round'
+              >
+                <polyline points='6 9 12 15 18 9'></polyline>
+              </svg>
+            </a>
+          ) : (
+            <span class='p-1 opacity-30 cursor-not-allowed'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                width='20'
+                height='20'
+                viewBox='0 0 24 24'
+                fill='none'
+                stroke='currentColor'
+                stroke-width='2'
+                stroke-linecap='round'
+                stroke-linejoin='round'
+              >
+                <polyline points='6 9 12 15 18 9'></polyline>
+              </svg>
+            </span>
+          )}
+        </span>
+      </h1>
+    </div>
+
+    <section id='content' class='animate' aria-label='Blog post list'>
+      {page.data.length === 0 ? (
+        <p class='text-muted-foreground'>No posts in this category yet.</p>
+      ) : (
+        <>
+          <ul class='flex flex-col gap-y-4 text-start'>
+            {page.data.map((post) => <PostPreview post={post} detailed />)}
+          </ul>
+          <Paginator {...paginationProps} />
+        </>
+      )}
+    </section>
+  </main>
+</PageLayout>
