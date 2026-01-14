@@ -37,20 +37,20 @@ const typographyConfig: TypographyOptions = {
     'h2,h3,h4,h5,h6': {
       'scroll-margin-top': '4rem'
     },
-    'h1>a,h2>a,h3>a,h4>a,h5>a,h6>a': {
+    'h1>a[aria-hidden="true"],h2>a[aria-hidden="true"],h3>a[aria-hidden="true"],h4>a[aria-hidden="true"],h5>a[aria-hidden="true"],h6>a[aria-hidden="true"]': {
       'margin-inline-start': '0.75rem',
       color: fgMuted,
       transition: 'opacity 0.2s ease',
       opacity: '0',
       'user-select': 'none'
     },
-    'h1>a:focus,h2>a:focus,h3>a:focus,h4>a:focus,h5>a:focus,h6>a:focus': {
+    'h1>a[aria-hidden="true"]:focus,h2>a[aria-hidden="true"]:focus,h3>a[aria-hidden="true"]:focus,h4>a[aria-hidden="true"]:focus,h5>a[aria-hidden="true"]:focus,h6>a[aria-hidden="true"]:focus': {
       opacity: 1
     },
-    'h1:hover>a,h2:hover>a,h3:hover>a,h4:hover>a,h5:hover>a,h6:hover>a': {
+    'h1:hover>a[aria-hidden="true"],h2:hover>a[aria-hidden="true"],h3:hover>a[aria-hidden="true"],h4:hover>a[aria-hidden="true"],h5:hover>a[aria-hidden="true"],h6:hover>a[aria-hidden="true"]': {
       opacity: 1
     },
-    'h1:target>a,h2:target>a,h3:target>a,h4:target>a,h5:target>a,h6:target>a': {
+    'h1:target>a[aria-hidden="true"],h2:target>a[aria-hidden="true"],h3:target>a[aria-hidden="true"],h4:target>a[aria-hidden="true"],h5:target>a[aria-hidden="true"],h6:target>a[aria-hidden="true"]': {
       opacity: 1
     },
     // Links

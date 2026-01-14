@@ -16,6 +16,9 @@ const totalWords = allPosts.reduce((acc, post) => {
 }, 0)
 const totalWordsDisplay = totalWords > 10000 ? `${(totalWords / 10000).toFixed(1)}w` : totalWords.toString()
 
+const githubUser = 'huang2202'
+const githubChartColor = '39d353'
+
 // 计算网站上线天数 (可以改成你的网站上线日期)
 const siteStartDate = new Date('2025-11-10')
 const today = new Date()
@@ -88,7 +91,7 @@ if (!images[imagePath])
       <Section title='About'>
         <p class='text-muted-foreground'>
           <!-- TODO: 修改为你自己的简介 -->
-          学生 / Researcher
+          Student / Learner
         </p>
         <p class='text-muted-foreground'>
           我本科就读于西安交通大学人工智能专业，目前大四在浙江大学提前进组工作中，后准备前往ZGCA加入项目组，interested in Embodied AI and RL。
@@ -146,6 +149,22 @@ if (!images[imagePath])
         <div class='mt-4 flex items-center justify-between text-sm text-muted-foreground'>
           <span>Total Posts</span>
           <span class='font-medium'>{totalPosts}</span>
+        </div>
+      </Section>
+
+      <Section title='GitHub Activities'>
+        <p class='text-muted-foreground'>
+          <a href={`https://github.com/${githubUser}`} target='_blank' rel='noreferrer'>
+            @{githubUser}
+          </a>
+        </p>
+        <div class='not-prose overflow-x-auto rounded-lg border bg-background p-4'>
+          <Image
+            src={`https://ghchart.rshah.org/${githubChartColor}/${githubUser}`}
+            alt='github contributions'
+            inferSize
+            loading='lazy'
+          />
         </div>
       </Section>
     </div>
