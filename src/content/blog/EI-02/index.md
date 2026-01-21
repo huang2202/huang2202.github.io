@@ -5,7 +5,7 @@ heroImage:
   src: ./man.jpg
   alt: man
   inferSize: true
-description: 捅破一层窗户纸，所有的事情和联系忽然变的无比清晰简单。
+description: 捅破一层窗户纸，所有的事情和联系忽然变的无比清晰简单。 -- 童欣
 categories:
 - Research
 tags:

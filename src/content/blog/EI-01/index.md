@@ -1,5 +1,5 @@
 ---
-title: Embodied-AI-Paper-Reading01
+title: EI-Paper-Reading01
 publishDate: 2025-12-10
 heroImage:
   src: ./AGI.png
