@@ -1,5 +1,5 @@
 ---
-title: 小镇做题家的回忆
+title: Memory of Past
 publishDate: 2026-01-21
 heroImage:
   src: ./sunflower.jpg
@@ -12,7 +12,7 @@ tags:
 - memory
 ---
 
-突然想要整理下自己从有主观意识与记忆以来，到目前保研结束经历的所有事情。
+突然想要整理下自己从有主观第一视角意识与记忆以来，到目前保研结束经历的所有事情。
 
 ## 童年
 
