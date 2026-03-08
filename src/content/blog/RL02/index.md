@@ -11,6 +11,7 @@ categories:
 tags: 
 - Learning Note
 - RL
+state: warning
 ---
 
 > 这份笔记建立了从 **Actor-Critic** 到 **Value-Based 方法** 的理论桥梁，严谨地分析了深度强化学习面临的收敛性挑战（**Deadly Triad**）。它最终落脚于 **连续控制机器人** 的解决方案，详细阐述了 **NAF** 和 **DDPG** 如何解决连续动作空间下的最大化难题，以及 **QT-Opt** 架构如何将这些原理扩展到大规模分布式系统中。

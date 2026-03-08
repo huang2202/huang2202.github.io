@@ -11,6 +11,7 @@ categories:
 tags:
 - Paper Reading
 - Embodied AI
+state: warning
 ---
 
 ## [MIP](https://simchowitzlabpublic.github.io/much-ado-about-noising-project/)

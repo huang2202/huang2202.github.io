@@ -10,6 +10,7 @@ categories:
 - Daily Life
 tags:
 - memory
+state: off
 ---
 
 突然想要整理下自己从有主观第一视角意识与记忆以来，到目前保研结束经历的所有事情。

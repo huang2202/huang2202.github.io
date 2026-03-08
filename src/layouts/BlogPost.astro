@@ -55,6 +55,18 @@ const primaryColor = data.heroImage?.color ?? 'hsl(var(--primary) / var(--un-tex
     <Fragment slot='description' />
   </Hero>
 
+  {/* Warning banner for posts with state: 'warning' */}
+  {data.state === 'warning' && (
+    <div class='mb-6 rounded-lg border border-yellow-200 bg-yellow-50/80 p-4'>
+      <div class='flex items-start gap-3'>
+        <span class='text-yellow-600 text-lg'>⚠️</span>
+        <p class='text-sm text-yellow-800'>
+          <strong>注意：</strong>本文章仍在完善中，内容可能会有后续更新和修改。
+        </p>
+      </div>
+    </div>
+  )}
+
   <slot />
 
   <Fragment slot='bottom'>

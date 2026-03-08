@@ -44,7 +44,13 @@ export default defineConfig({
     responsiveStyles: true,
     service: {
       entrypoint: 'astro/assets/services/sharp'
-    }
+    },
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'ghchart.rshah.org'
+      }
+    ]
   },
 
   // [Markdown]

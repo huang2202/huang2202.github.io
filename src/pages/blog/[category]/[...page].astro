@@ -20,7 +20,8 @@ export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
   return categories.flatMap((c) => {
     const filterPosts = allPostsByDate.filter((post) => {
       const categories = (post.data as { categories?: string[] }).categories ?? []
-      return categories.includes(c.slug)
+      const state = (post.data as { state?: string }).state ?? 'on'
+      return categories.includes(c.slug) && state !== 'off'
     })
     return paginate(filterPosts, {
       pageSize: config.content.blogPageSize,
