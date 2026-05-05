@@ -11,6 +11,7 @@ categories:
 tags:
 - Paper Reading
 - Embodied AI
+state: off
 ---
 
 
@@ -101,13 +102,10 @@ NeurIPS2025 spotlight Sergey Levine课题组工作，Long-Horizon Scaling RL
 
 ![image](./EI2/image-20251223174444-zwpf7te.png)
 
-Long-Horizon 稀疏奖励任务能力提升，可以套用在任何AC算法上，如SAC TD3 IQL。也有人吐槽这个工作就是Sergey Levine在展现讲故事的能力，最后只中了poster。
+Long-Horizon 稀疏奖励任务能力提升，可以套用在任何AC算法上，如SAC TD3 IQL。也有人吐槽这个工作就是Sergey Levine在展现讲故事的能力，最后只中了poster。后来的RL Token和DICE-RL工作其实都是受Q-Chunking启发，这个论文有其局限性但是还是被低估了。
 
-### 为什么ResFit不使用Q-Chunking技巧
 
-如果真的直接“迷信”了Sergey Levine 在这里讲的故事，认为Q-Chunking技巧可以无脑优化各个AC强化学习算法，那你一定会get stuck了。在ResFiT 这个工作的强化学习后训练违背了action chunking机制去做单步推理加残差动作，其实加chunking会有"Temporally Coherent Exploration"（时间连贯的探索）的优势，不加chunking有即时收到环境反馈的优势，但是抖动会更明显，具体怎么用得自己coding然后跑代码去验证。所以这里chunking的侧重点是增强了RL的探索强度。
-
-我的评分：⭐⭐
+我的评分：⭐⭐⭐
 
 ‍
 
@@ -125,7 +123,7 @@ Long-Horizon 稀疏奖励任务能力提升，可以套用在任何AC算法上�
 
 ![image](./EI2/image-20251222114004-irnj3il.png)
 
-我的评分：⭐⭐⭐
+我的评分：⭐
 
 ## [Gemanip](https://genmanip.com/publications/genmanip-cvpr2025/)
 

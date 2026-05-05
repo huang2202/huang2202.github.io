@@ -11,7 +11,7 @@ categories:
 tags:
 - Learning Note
 - RL
-state: warning
+state: off
 ---
 ## Data Driven RL
 > Can we develop data-driven RL methods?

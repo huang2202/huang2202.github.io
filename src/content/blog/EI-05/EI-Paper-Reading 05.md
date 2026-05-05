@@ -11,7 +11,7 @@ categories:
 tags:
 - Paper Reading
 - Embodied AI
-state: on
+state: off
 ---
 
 ## $\pi$
@@ -133,6 +133,8 @@ pi05整体架构设计延续了pi0，强调Generalization，这是pi0最大的�
 之所以用ResRL基于一个insight，就是灵巧手纯RL其实会探索效率很慢并且探索出奇异的动作，而在操作物体如果在拓扑结构上改变不大的话，需要修正动作实际不大，所以ResRL可以在Base Policy的先验下，在灵巧手操作上去很快的做好这不太大的修正动作的探索。如果遇到一个全新物体，**需要彻底改变拓扑操作策略**（比如：原来是“捏起”一个盒子，现在变成需要把手指插进马克杯的“提手”里“勾起”它），ResRL **必定会失败**。因为 Base Policy 给出的先验是“捏”，而残差由于被限制了范围（低 Residual Norm Ratio），它只能在“捏”的流形（Manifold）上微调，永远无法产生突变成“勾”的动作。
 
 ![image](assets/image-20260301153207-qv1t9hy.png)
+
+再补充一个局限性是对于residual actor这里观测采用的是FoundationPose提供的单物体Pose，针对多物体操作比如make tea，双手拿瓶子这种就直接不可用了，而且从图示来看场景非常的干净，所以residual actor可以很容易的拟合是很正常的，但是即然侧重点是数据飞轮这些局限性是可以接受的
 
 **我的评分：⭐⭐** 
 

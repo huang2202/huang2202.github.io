@@ -11,6 +11,7 @@ categories:
 tags:
 - Paper Reading
 - Embodied AI
+state: off
 ---
 
 ## [AVTD](https://arxiv.org/abs/2304.10466)

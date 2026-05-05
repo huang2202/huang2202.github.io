@@ -11,7 +11,7 @@ categories:
 tags:
 - Paper Reading
 - Embodied AI
-state: on
+state: off
 ---
 
 ## [Data Analogies](https://data-analogies.github.io/)
