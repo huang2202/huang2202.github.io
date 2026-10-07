@@ -1,7 +1,8 @@
 ---
-import { Footer, Header, ThemeProvider } from 'astro-pure/components/basic'
 import type { SiteMeta } from 'astro-pure/types'
 import BaseHead from '@/components/BaseHead.astro'
+import SiteFooter from '@/components/SiteFooter.astro'
+import SiteHeader from '@/components/SiteHeader.astro'
 import config from '@/site-config'
 
 // Import the global.css file here so that it is included on
@@ -24,7 +25,6 @@ const {
 <html lang={config.locale.lang}>
   <head>
     <BaseHead {articleDate} {description} {ogImage} {title} />
-    <ThemeProvider />
   </head>
 
   <body class='flex justify-center bg-background text-foreground' {...props}>
@@ -41,11 +41,11 @@ const {
       id='main-container'
       class='w-full max-w-[70rem] min-h-[100dvh] flex flex-col justify-between'
     >
-      <Header />
+      <SiteHeader />
       <div class='flex-1 w-full'>
         <slot />
       </div>
-      <Footer />
+      <SiteFooter />
     </div>
 
     {/* Set highlight color */}

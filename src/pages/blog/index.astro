@@ -1,17 +1,25 @@
 ---
-import config from '@/site-config'
+import { PostPreview } from 'astro-pure/components/pages'
+import { getBlogCollection, sortMDByDate } from 'astro-pure/server'
+import PageLayout from '@/layouts/BaseLayout.astro'
 
-export const prerender = true
-
-const defaultCategory = config.content.categories?.[0]?.slug ?? 'research'
-const target = `/blog/${defaultCategory}`
+const posts = sortMDByDate(await getBlogCollection())
+const meta = { title: 'Writing', description: 'Published writing by Guangyu Huang.' }
 ---
 
-<head>
-  <meta http-equiv='refresh' content={`0;url=${target}`} />
-  <link rel='canonical' href={target} />
-</head>
-
-<p>
-  Redirecting to <a href={target}>{target}</a>...
-</p>
+<PageLayout {meta}>
+  <main class='py-4'>
+    <h1 class='text-3xl font-medium'>Writing</h1>
+    {
+      posts.length ? (
+        <ul class='mt-8 flex flex-col gap-y-4'>
+          {posts.map((post) => (
+            <PostPreview {post} detailed />
+          ))}
+        </ul>
+      ) : (
+        <p class='mt-6 text-muted-foreground'>There is no published writing at present.</p>
+      )
+    }
+  </main>
+</PageLayout>

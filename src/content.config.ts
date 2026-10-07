@@ -1,6 +1,8 @@
-import { glob } from 'astro/loaders'
 import { defineCollection, z } from 'astro:content'
+import { glob } from 'astro/loaders'
+
 import { theme } from './site.config'
+import { publication } from './site.profile'
 
 function removeDupsAndLowerCase(array: string[]) {
   if (!array.length) return array
@@ -23,8 +25,11 @@ const allowedCategorySlugs = new Set((theme.content.categories ?? []).map((c) =>
 
 // Define blog collection
 const blog = defineCollection({
-  // Load Markdown and MDX files in the `src/content/blog/` directory.
-  loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
+  // Keep private notes and their image imports out of the public build entirely.
+  // The route-level state/draft filters still apply when writing is enabled.
+  loader: publication.writing
+    ? glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' })
+    : async () => [],
   // Required
   schema: ({ image }) =>
     z.object({

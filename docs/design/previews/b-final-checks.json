@@ -1,0 +1,131 @@
+{
+  "viewports": [
+    {
+      "label": "desktop",
+      "viewport": 1440,
+      "documentWidth": 1440,
+      "title": "Guangyu Huang",
+      "h1": "Guangyu Huang",
+      "affiliation": "Zhejiang University, State Key Lab of CAD & CG",
+      "layoutDisplay": "grid",
+      "layoutColumns": "235px 703px",
+      "avatarWidth": 86,
+      "background": "rgb(255, 255, 255)",
+      "nav": [
+        {
+          "href": "#research",
+          "current": "location"
+        },
+        {
+          "href": "#contact",
+          "current": null
+        }
+      ],
+      "email": "mailto:zju_hgy@163.com",
+      "prototypeSwitcher": false,
+      "writingLink": false
+    },
+    {
+      "label": "mobile",
+      "viewport": 390,
+      "documentWidth": 390,
+      "title": "Guangyu Huang",
+      "h1": "Guangyu Huang",
+      "affiliation": "Zhejiang University, State Key Lab of CAD & CG",
+      "layoutDisplay": "block",
+      "layoutColumns": "235px minmax(0px, 1fr)",
+      "avatarWidth": 70,
+      "background": "rgb(255, 255, 255)",
+      "nav": [
+        {
+          "href": "#research",
+          "current": "location"
+        },
+        {
+          "href": "#contact",
+          "current": null
+        }
+      ],
+      "email": "mailto:zju_hgy@163.com",
+      "prototypeSwitcher": false,
+      "writingLink": false
+    },
+    {
+      "label": "small-mobile",
+      "viewport": 320,
+      "documentWidth": 320,
+      "title": "Guangyu Huang",
+      "h1": "Guangyu Huang",
+      "affiliation": "Zhejiang University, State Key Lab of CAD & CG",
+      "layoutDisplay": "block",
+      "layoutColumns": "235px minmax(0px, 1fr)",
+      "avatarWidth": 70,
+      "background": "rgb(255, 255, 255)",
+      "nav": [
+        {
+          "href": "#research",
+          "current": "location"
+        },
+        {
+          "href": "#contact",
+          "current": null
+        }
+      ],
+      "email": "mailto:zju_hgy@163.com",
+      "prototypeSwitcher": false,
+      "writingLink": false
+    }
+  ],
+  "redirects": [
+    {
+      "path": "/academic",
+      "target": "/#research",
+      "pass": true
+    },
+    {
+      "path": "/about",
+      "target": "/#profile",
+      "pass": true
+    },
+    {
+      "path": "/projects",
+      "target": "/#research",
+      "pass": true
+    },
+    {
+      "path": "/links",
+      "target": "/#contact",
+      "pass": true
+    }
+  ],
+  "checks": {
+    "contactNavigation": true,
+    "researchNavigation": true,
+    "keyboardSkipLink": true,
+    "emptyWriting": true,
+    "rssItems": 0,
+    "privatePostStatus": 404,
+    "search": {
+      "privateMatches": 0,
+      "publicMatches": 1
+    },
+    "browserErrors": []
+  },
+  "metadata": {
+    "description": "My research interests lie in robot learning and embodied intelligence, with a focus on reinforcement learning.",
+    "canonical": "https://huang2202.github.io/",
+    "socialCard": "https://huang2202.github.io/images/academic-social-card.png",
+    "person": {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Guangyu Huang",
+      "alternateName": "Harry Guang",
+      "url": "https://huang2202.github.io/",
+      "sameAs": ["https://github.com/huang2202"],
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Zhejiang University, State Key Lab of CAD & CG"
+      }
+    }
+  }
+}

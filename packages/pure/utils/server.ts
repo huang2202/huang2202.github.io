@@ -1,14 +1,14 @@
-import { type CollectionEntry, type CollectionKey, getCollection } from 'astro:content'
+import { getCollection, type CollectionEntry, type CollectionKey } from 'astro:content'
 
 type Collections = CollectionEntry<CollectionKey>[]
 
 export const prod = import.meta.env.PROD
 
-/** Note: this function filters out draft posts based on the environment */
+/** Hidden blog entries are excluded everywhere; draft entries are excluded in production. */
 export async function getBlogCollection<T extends CollectionKey = 'blog'>(contentType?: T) {
   const type = (contentType ?? 'blog') as T
   return await getCollection(type, ({ data }: CollectionEntry<T>) => {
-    // Not in production & draft is not false
+    if (type === 'blog' && 'state' in data && data.state === 'off') return false
     return prod ? !data.draft : true
   })
 }

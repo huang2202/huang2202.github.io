@@ -1,0 +1,26 @@
+---
+import { profile } from '@/site-profile'
+---
+
+<footer>
+  <span>© {new Date().getFullYear()} {profile.name}</span>
+  <a href={profile.github}>GitHub</a>
+  <a href={`mailto:${profile.email}`}>Email</a>
+</footer>
+
+<style>
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    border-top: 1px solid #e4e8ee;
+    margin-top: 48px;
+    padding: 24px 0;
+    font-size: 13px;
+    color: #667587;
+  }
+  a {
+    color: #173f6b;
+    text-underline-offset: 3px;
+  }
+</style>

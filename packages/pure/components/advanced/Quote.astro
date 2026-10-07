@@ -1,20 +1,26 @@
 ---
+import config from 'virtual:config'
+
 import { cn } from '../../utils'
 
 const { class: className } = Astro.props
 ---
 
-<quote-component class={cn('not-prose inline-block', className)}>
-  <div class='flex flex-row items-center gap-x-3 rounded-full border px-4 py-2 text-sm shadow-sm'>
-    <span class='relative flex items-center justify-center'>
-      <span
-        class='absolute size-2 animate-ping rounded-full border border-green-400 bg-green-400 opacity-75'
-      ></span>
-      <span class='size-2 rounded-full bg-green-400'></span>
-    </span>
-    <p id='quote-sentence' class='font-medium text-muted-foreground'>Loading...</p>
-  </div>
-</quote-component>
+{
+  config.integ.quote.enable && (
+    <quote-component class={cn('not-prose inline-block', className)}>
+      <div class='flex flex-row items-center gap-x-3 rounded-full border px-4 py-2 text-sm shadow-sm'>
+        <span class='relative flex items-center justify-center'>
+          <span class='absolute size-2 animate-ping rounded-full border border-green-400 bg-green-400 opacity-75' />
+          <span class='size-2 rounded-full bg-green-400' />
+        </span>
+        <p id='quote-sentence' class='font-medium text-muted-foreground'>
+          Loading...
+        </p>
+      </div>
+    </quote-component>
+  )
+}
 
 <script>
   import config from 'virtual:config'
@@ -29,6 +35,7 @@ const { class: className } = Astro.props
     }
 
     connectedCallback() {
+      if (!quote.enable) return
       // Because virtual:config can only be accessed using json string, function cannot work, so we need to use new Function
       const targetFunction = new Function('data', `return (${quote.target})(data)`)
       fetch(quote.server)

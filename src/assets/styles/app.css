@@ -1,12 +1,12 @@
 /* Theme */
 :root {
   /* Primary */
-  --primary: 200 29% 45%;
+  --primary: 211 65% 25%;
   /* Foreground */
-  --foreground: 240 10% 3.9%;
-  --muted-foreground: 240 3.8% 28.1%;
+  --foreground: 215 26% 21%;
+  --muted-foreground: 214 17% 39%;
   /* Background */
-  --background: 210 33% 99%;
+  --background: 0 0% 100%;
   --muted: 240 4.8% 96%;
   --card: 0 0% 90%;
 

@@ -1,0 +1,86 @@
+---
+import { profile } from '@/site-profile'
+
+import BaseHead from '@/components/BaseHead.astro'
+
+import '@/assets/styles/app.css'
+---
+
+<!doctype html>
+<html lang='en'>
+  <head>
+    <BaseHead title={profile.name} description={profile.summary} />
+    <meta name='theme-color' content='#ffffff' />
+    <script
+      is:inline
+      type='application/ld+json'
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: profile.name,
+        alternateName: profile.alias,
+        url: Astro.site?.href,
+        sameAs: [profile.github],
+        affiliation: { '@type': 'Organization', name: profile.affiliation }
+      }).replace(/</g, '\\u003c')}
+    />
+  </head>
+  <body class='academic-body'>
+    <a class='skip-link' href='#main-content'>Skip to content</a>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  html {
+    background: #fff;
+    color: #283444;
+    scroll-behavior: smooth;
+  }
+  .academic-body {
+    margin: 0;
+    background: #fff;
+    color: #283444;
+    font-family: Arial, 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+  }
+  .academic-body *,
+  .academic-body *::before,
+  .academic-body *::after {
+    box-sizing: border-box;
+  }
+  .academic-body a {
+    color: #173f6b;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+  .academic-body a:hover {
+    color: #102c4b;
+  }
+  .academic-body a:focus-visible {
+    outline: 2px solid #173f6b;
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+  .academic-body section {
+    scroll-margin-top: 24px;
+  }
+  .skip-link {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 100;
+    transform: translateY(-200%);
+    padding: 8px 14px;
+    background: #fff;
+    border: 1px solid #173f6b;
+  }
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+</style>

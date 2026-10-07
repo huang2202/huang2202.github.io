@@ -18,6 +18,8 @@ export const IntegrationConfigSchema = () =>
      * The quote will be fetched from the specified server and the target will be replaced with the quote.
      */
     quote: z.object({
+      /** Render and fetch the quote only when enabled. */
+      enable: z.boolean().default(true),
       /** The server to fetch the quote from. */
       server: z.string(),
       /** target: string, but (data: unknown) => string */

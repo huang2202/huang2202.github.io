@@ -1,17 +1,19 @@
 import type { CardListData, Config, IntegrationUserConfig, ThemeUserConfig } from 'astro-pure/types'
 
+import { profile } from './site.profile'
+
 export const theme: ThemeUserConfig = {
   // [Basic]
   /** Title for your website. Will be used in metadata and as browser tab title. */
-  title: 'Lumin Space',
+  title: profile.name,
   /** Will be used in index page & copyright declaration */
-  author: 'Harry-Guang',
+  author: profile.name,
   /** Description metadata for your website. Can be used in page metadata. */
-  description: 'Journey to the North Star',
+  description: profile.summary,
   /** The default favicon for your site which should be a path to an image in the `public/` directory. */
-  favicon: '/favicon/logo.png',
+  favicon: '/favicon/academic.svg',
   /** The default social card image for your site which should be a path to an image in the `public/` directory. */
-  socialCard: '/images/social-card.png',
+  socialCard: '/images/academic-social-card.png',
   /** Specify the default language for this site. */
   locale: {
     lang: 'en-US',
@@ -27,7 +29,7 @@ export const theme: ThemeUserConfig = {
   /** Set a logo image to show in the homepage. */
   logo: {
     src: '/src/assets/nova.png',
-    alt: 'Avatar'
+    alt: `${profile.name}'s chosen avatar`
   },
 
   titleDelimiter: '•',
@@ -48,11 +50,9 @@ export const theme: ThemeUserConfig = {
   /** Configure the header of your site. */
   header: {
     menu: [
-      { title: 'Blog', link: '/blog' },
-      { title: 'Academic', link: '/academic' },
-      // { title: 'Projects', link: '/projects' },
-      { title: 'Links', link: '/links' },
-      { title: 'About', link: '/about' }
+      { title: 'Profile', link: '/#profile' },
+      { title: 'Research', link: '/#research' },
+      { title: 'Contact', link: '/#contact' }
     ]
   },
 
@@ -61,24 +61,11 @@ export const theme: ThemeUserConfig = {
     // Year format
     year: `© ${new Date().getFullYear()}`,
     // year: `© 2019 - ${new Date().getFullYear()}`,
-    links: [
-      // Registration link
-      {
-        title: 'Moe ICP 114514',
-        link: 'https://icp.gov.moe/?keyword=114514',
-        style: 'text-sm' // Uno/TW CSS class
-      },
-      // Privacy Policy link
-      {
-        title: 'Site Policy',
-        link: '/terms/list',
-        pos: 2 // position set to 2 will be appended to copyright line
-      }
-    ],
+    links: [],
     /** Enable displaying a “Astro & Pure theme powered” link in your site’s footer. */
     credits: true,
     /** Optional details about the social media accounts for this site. */
-    social: { github: 'https://github.com/huang2202' }
+    social: { github: profile.github }
   },
 
   // [Content]
@@ -132,6 +119,7 @@ export const integ: IntegrationUserConfig = {
   // See: https://astro-pure.js.org/docs/integrations/advanced#web-content-render
   // [Quote]
   quote: {
+    enable: false,
     // - Hitokoto
     // https://developer.hitokoto.cn/sentence/#%E8%AF%B7%E6%B1%82%E5%9C%B0%E5%9D%80
     // server: 'https://v1.hitokoto.cn/?c=i',

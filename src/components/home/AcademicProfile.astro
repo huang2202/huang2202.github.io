@@ -1,0 +1,285 @@
+---
+import { Image } from 'astro:assets'
+import { profile } from '@/site-profile'
+
+import avatar from '@/assets/nova.png'
+---
+
+<div class='academic-profile'>
+  <aside id='profile' aria-label='Profile'>
+    <Image
+      src={avatar}
+      width={172}
+      alt={`${profile.name}'s chosen avatar`}
+      loading='eager'
+      fetchpriority='high'
+      class='avatar'
+    />
+    <h1>{profile.name}</h1>
+    <p class='alias'>({profile.alias})</p>
+    <p class='affiliation'>{profile.affiliation}</p>
+    <nav aria-label='Primary navigation'>
+      <a href='#research'>Research</a>
+      <a href='#contact'>Contact</a>
+    </nav>
+    <div class='profile-links'>
+      <a href={`mailto:${profile.email}`}>Email</a>
+      <a href={profile.github}>GitHub</a>
+    </div>
+  </aside>
+  <main id='main-content' tabindex='-1' data-pagefind-body>
+    <section id='research' aria-labelledby='research-heading'>
+      <p class='eyebrow'>Research interests</p>
+      <h2 id='research-heading'>Robot Learning &amp;<br />Embodied Intelligence</h2>
+      <p class='intro'>{profile.summary}</p>
+      <div class='themes'>
+        {
+          profile.interests.map((interest, index) => (
+            <article aria-labelledby={`interest-${index}`}>
+              <span class='number' aria-hidden='true'>
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <div>
+                <h3 id={`interest-${index}`}>{interest.title}</h3>
+                <p>{interest.description}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+    <section id='contact' class='contact' aria-labelledby='contact-heading'>
+      <h2 id='contact-heading'>Contact</h2>
+      <p>For research correspondence, please contact me by email.</p>
+      <div>
+        <a href={`mailto:${profile.email}`}>{profile.email}</a>
+        <a href={profile.github}>GitHub <span aria-hidden='true'>↗</span></a>
+      </div>
+    </section>
+    <footer>© {new Date().getFullYear()} {profile.name} <span>·</span> Zhejiang University</footer>
+  </main>
+</div>
+
+<script>
+  const navigation = document.querySelector('nav[aria-label="Primary navigation"]')
+  const links = navigation?.querySelectorAll<HTMLAnchorElement>('a[href^="#"]')
+  function updateNavigation() {
+    const current = window.location.hash === '#contact' ? '#contact' : '#research'
+    links?.forEach((link) => {
+      if (link.getAttribute('href') === current) link.setAttribute('aria-current', 'location')
+      else link.removeAttribute('aria-current')
+    })
+  }
+  updateNavigation()
+  window.addEventListener('hashchange', updateNavigation)
+</script>
+
+<style>
+  .academic-profile {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 78px 40px 64px;
+    display: grid;
+    grid-template-columns: 235px minmax(0, 1fr);
+    gap: 82px;
+  }
+  aside {
+    border-right: 1px solid #e4e8ee;
+    padding-right: 33px;
+  }
+  .avatar {
+    width: 86px;
+    height: 86px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  h1 {
+    font-size: 25px;
+    line-height: 1.35;
+    font-weight: 600;
+    margin: 22px 0 4px;
+    letter-spacing: -0.7px;
+  }
+  .alias {
+    font-size: 14px;
+    margin: 0;
+    color: #667587;
+  }
+  .affiliation {
+    color: #4e5c6d;
+    font-size: 14px;
+    line-height: 1.9;
+    margin: 25px 0 0;
+  }
+  nav {
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    font-size: 14px;
+  }
+  nav a {
+    text-decoration: none;
+    color: #657285;
+  }
+  nav a[aria-current='location'] {
+    color: #173f6b;
+    font-weight: 600;
+  }
+  .profile-links {
+    display: flex;
+    gap: 19px;
+    margin-top: 33px;
+    font-size: 13px;
+  }
+  main {
+    min-width: 0;
+  }
+  .eyebrow {
+    color: #5d7087;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.9px;
+    text-transform: uppercase;
+    margin: 5px 0 19px;
+  }
+  #research-heading {
+    font-size: 42px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -1.5px;
+    margin: 0;
+  }
+  .intro {
+    font-size: 18px;
+    line-height: 1.9;
+    margin: 25px 0 0;
+    max-width: 590px;
+    color: #4e5b6c;
+  }
+  .themes {
+    margin-top: 45px;
+    border-top: 1px solid #dce3eb;
+  }
+  article {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 15px;
+    padding: 27px 0;
+    border-bottom: 1px solid #e4e8ee;
+  }
+  .number {
+    color: #7b8795;
+    font-size: 12px;
+    padding-top: 5px;
+  }
+  h3 {
+    font-size: 18px;
+    line-height: 1.4;
+    font-weight: 600;
+    margin: 0 0 10px;
+    color: #173f6b;
+    letter-spacing: -0.3px;
+  }
+  article p {
+    color: #576577;
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0;
+  }
+  .contact {
+    margin-top: 40px;
+  }
+  .contact h2 {
+    color: #283444;
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0 0 10px;
+  }
+  .contact p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #657285;
+    margin: 0 0 15px;
+  }
+  .contact div {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    font-size: 14px;
+  }
+  footer {
+    margin-top: 44px;
+    font-size: 12px;
+    color: #667587;
+  }
+  footer span {
+    padding: 0 7px;
+  }
+  @media (max-width: 760px) {
+    .academic-profile {
+      display: block;
+      padding: 30px 24px 48px;
+    }
+    aside {
+      border: 0;
+      padding: 0 0 26px;
+      border-bottom: 1px solid #e4e8ee;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 70px;
+      column-gap: 22px;
+    }
+    .avatar {
+      grid-column: 2;
+      grid-row: 1 / 4;
+      width: 70px;
+      height: 70px;
+    }
+    h1 {
+      grid-column: 1;
+      grid-row: 1;
+      margin: 0 0 4px;
+      font-size: 26px;
+    }
+    .alias {
+      grid-column: 1;
+      grid-row: 2;
+    }
+    .affiliation {
+      grid-column: 1 / -1;
+      margin-top: 17px;
+    }
+    nav {
+      flex-direction: row;
+      margin-top: 19px;
+      grid-column: 1 / -1;
+      gap: 23px;
+    }
+    .profile-links {
+      margin-top: 18px;
+      grid-column: 1 / -1;
+    }
+    main {
+      padding-top: 35px;
+    }
+    #research-heading {
+      font-size: 33px;
+      letter-spacing: -0.9px;
+      overflow-wrap: anywhere;
+    }
+    .intro {
+      font-size: 17px;
+    }
+    .themes {
+      margin-top: 30px;
+    }
+    article {
+      grid-template-columns: 24px minmax(0, 1fr);
+      gap: 9px;
+    }
+    h3 {
+      font-size: 17px;
+    }
+  }
+</style>

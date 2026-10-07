@@ -1,21 +1,23 @@
 ---
-import { Font } from 'astro:assets'
-
-import { prod } from 'astro-pure/server'
-import type { SiteMeta } from 'astro-pure/types'
 import config from 'virtual:config'
+
+import type { SiteMeta } from 'astro-pure/types'
 
 type Props = SiteMeta
 
 const { articleDate, description, ogImage, title } = Astro.props
 
-const siteTitle = `${title} ${config.titleDelimiter} ${config.title}`
+const siteTitle =
+  title === config.title ? title : `${title} ${config.titleDelimiter} ${config.title}`
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
-const socialImageURL = new URL(ogImage ? ogImage : config.socialCard, Astro.url).href
+const socialImageURL = new URL(ogImage ?? config.socialCard, Astro.site ?? Astro.url).href
 ---
 
 <meta charset='utf-8' />
-<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover' name='viewport' />
+<meta
+  content='width=device-width, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover'
+  name='viewport'
+/>
 <meta content='IE=edge' http-equiv='X-UA-Compatible' />
 <title>{siteTitle}</title>
 
@@ -27,11 +29,10 @@ const socialImageURL = new URL(ogImage ? ogImage : config.socialCard, Astro.url)
 <link rel='apple-touch-icon' sizes='180x180' href={config.favicon.href} />
 <link rel='manifest' href='/favicon/site.webmanifest' />
 
-{/* Font preloads */}
-<Font cssVariable='--font-satoshi' preload={[{ subset: 'latin', style: 'normal' }]} />
+{/* Use the same system font stack as the approved academic layout. */}
 <style>
-  body {
-    font-family: var(--font-satoshi);
+  :global(body) {
+    font-family: Arial, 'Helvetica Neue', sans-serif;
   }
 </style>
 
@@ -45,7 +46,7 @@ const socialImageURL = new URL(ogImage ? ogImage : config.socialCard, Astro.url)
 
 {/* Theme Color */}
 {/* <meta content='' name='theme-color' /> */}
-<meta name='color-scheme' content='light dark' />
+<meta name='color-scheme' content='light' />
 
 {/* Open Graph / Facebook */}
 <meta content={articleDate ? 'article' : 'website'} property='og:type' />
@@ -85,14 +86,3 @@ const socialImageURL = new URL(ogImage ? ogImage : config.socialCard, Astro.url)
 />
 
 <meta content={Astro.generator} name='generator' />
-
-{
-  /* User script*/
-  prod && (
-    <script>
-      console.log( '%c Astro Theme Pure %c https://github.com/cworld1/astro-theme-pure/',
-      'color:#fff;background:linear-gradient(90deg,#448bff,#44e9ff);padding:5px 0;',
-      'color:#000;background:linear-gradient(90deg,#44e9ff,#ffffff);padding:5px 10px 5px 0px;' )
-    </script>
-  )
-}

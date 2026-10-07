@@ -5,10 +5,14 @@
   ],
   "type": "module",
   "version": "4.1.2",
+  "engines": {
+    "node": ">=22.18.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "dev:check": "astro check --watch & astro dev",
-    "build": "astro-pure check && astro check && astro build",
+    "build": "npm run assets:profile && astro-pure check && astro check && astro build",
+    "assets:profile": "node scripts/generate-profile-assets.mjs",
     "preview": "astro preview",
     "sync": "astro sync",
     "check": "astro check",
