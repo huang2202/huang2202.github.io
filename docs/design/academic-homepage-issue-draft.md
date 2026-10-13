@@ -15,7 +15,7 @@
 - 正式姓名：Guangyu Huang；自行选用的公开别名：Harry Guang。
 - 姓名区采用 Guangyu Huang (Harry Guang)。
 - 机构名称逐字使用：Zhejiang University, State Key Lab of CAD & CG。
-- 个人角色和开始年份未提供，首版只列机构。
+- 2026-10-07 首版只列机构；2026-10-13 确认的当前身份见后续需求。
 - 研究兴趣以 Robot Learning & Embodied Intelligence 为主线，Reinforcement Learning 作为方法方向。
 - 暂无公开研究成果，先建立研究兴趣内容。
 - 保留现有动漫头像，使用紧凑尺寸。
@@ -50,3 +50,25 @@
 共享集合查询补齐 `state: off` 过滤；`publication.writing: false` 在加载阶段阻止笔记正文和图片附件进入公开构建。14 篇笔记及原头像未修改，633 个私人附件的产物检查无命中。
 
 生产构建和 Astro 检查通过。浏览器覆盖 1440px、390px、320px，章节导航、键盘操作、旧地址跳转、RSS、搜索及元数据检查通过。验收记录和最终截图见 `docs/design/academic-homepage.md` 与 `docs/design/previews/b-final-*`。本地预览地址为 `http://127.0.0.1:4321/`。
+
+## 后续需求：当前个人简介、具体研究兴趣与机构链接（2026-10-13）
+
+拟用标题：Restore the current academic biography and clarify research interests。
+
+创建状态：本次调用 GitHub Issue 创建接口仍返回 `403: Resource not accessible by integration`，未创建远程 Issue。
+
+用户已确定补充范围：
+
+- 在研究兴趣前补充 About：目前是浙江大学计算机学院一年级直博生，在北京中关村学院联合培养。
+- Chunhua Shen 是正式博士导师，作者属于其团队；Hao Chen 提供研究指导，使用准确区分两种关系的英文措辞。
+- 使用学校和学院的官方英文名称，不从旧页面推断入学时间，不将联合培养写成联合学位。
+- 研究问题一：已学机器人技能对新物体、任务和环境的泛化与适应。
+- 研究问题二：结合示范数据与强化学习，高效利用有限的环境交互学习和改进技能。
+- 保留 B 版布局与领域标题，研究总述和两个条目的正文合计约 60–100 英文词，以研究兴趣语气表达。
+- 为学校和实验室分别添加官网链接，署名仍逐字为 `Zhejiang University, State Key Lab of CAD & CG`。
+- 学校链接：`https://www.zju.edu.cn/english/`；实验室链接：`http://www.cad.zju.edu.cn/`。
+- 笔记继续保持未公开。
+
+验收：个人简介准确反映当前身份和指导关系，研究文案反映以上问题，机构名称与链接匹配，About / Research / Contact 导航可用，Astro 检查和构建通过，桌面及手机无横向溢出。
+
+实施结果：本地预览已补齐当前个人简介、导师主页、学院与联合培养机构链接及具体研究兴趣。构建和三种屏宽的浏览器验收通过，完整记录位于 `docs/design/academic-homepage.md`。2026-10-13 用户已验收并授权推送部署，发布结果以本轮提交的 GitHub Pages 工作流状态及线上验收为准。

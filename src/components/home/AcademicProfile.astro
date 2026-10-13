@@ -17,8 +17,16 @@ import avatar from '@/assets/nova.png'
     />
     <h1>{profile.name}</h1>
     <p class='alias'>({profile.alias})</p>
-    <p class='affiliation'>{profile.affiliation}</p>
+    <p class='affiliation'>
+      {
+        profile.affiliationLinks.flatMap(({ name, href }, index) => [
+          index > 0 ? ', ' : '',
+          <a href={href}>{name}</a>
+        ])
+      }
+    </p>
     <nav aria-label='Primary navigation'>
+      <a href='#about'>About</a>
       <a href='#research'>Research</a>
       <a href='#contact'>Contact</a>
     </nav>
@@ -28,6 +36,14 @@ import avatar from '@/assets/nova.png'
     </div>
   </aside>
   <main id='main-content' tabindex='-1' data-pagefind-body>
+    <section id='about' class='about' aria-labelledby='about-heading'>
+      <h2 id='about-heading'>About</h2>
+      {
+        profile.biography.map((paragraph) => (
+          <p>{paragraph.map(({ text, href }) => (href ? <a href={href}>{text}</a> : text))}</p>
+        ))
+      }
+    </section>
     <section id='research' aria-labelledby='research-heading'>
       <p class='eyebrow'>Research interests</p>
       <h2 id='research-heading'>Robot Learning &amp;<br />Embodied Intelligence</h2>
@@ -64,7 +80,9 @@ import avatar from '@/assets/nova.png'
   const navigation = document.querySelector('nav[aria-label="Primary navigation"]')
   const links = navigation?.querySelectorAll<HTMLAnchorElement>('a[href^="#"]')
   function updateNavigation() {
-    const current = window.location.hash === '#contact' ? '#contact' : '#research'
+    const current = ['#research', '#contact'].includes(window.location.hash)
+      ? window.location.hash
+      : '#about'
     links?.forEach((link) => {
       if (link.getAttribute('href') === current) link.setAttribute('aria-current', 'location')
       else link.removeAttribute('aria-current')
@@ -111,6 +129,14 @@ import avatar from '@/assets/nova.png'
     line-height: 1.9;
     margin: 25px 0 0;
   }
+  .affiliation a {
+    color: inherit;
+    text-decoration-color: #b9c4d0;
+  }
+  .affiliation a:hover {
+    color: #173f6b;
+    text-decoration-color: currentColor;
+  }
   nav {
     margin-top: 36px;
     display: flex;
@@ -135,6 +161,26 @@ import avatar from '@/assets/nova.png'
   }
   main {
     min-width: 0;
+  }
+  .about p {
+    color: #4e5b6c;
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0;
+  }
+  .about p + p {
+    margin-top: 14px;
+  }
+  .about a {
+    text-decoration: underline;
+    text-decoration-color: #b9c4d0;
+    text-underline-offset: 3px;
+  }
+  .about a:hover {
+    text-decoration-color: currentColor;
+  }
+  #research {
+    margin-top: 42px;
   }
   .eyebrow {
     color: #5d7087;
@@ -191,6 +237,7 @@ import avatar from '@/assets/nova.png'
   .contact {
     margin-top: 40px;
   }
+  .about h2,
   .contact h2 {
     color: #283444;
     font-size: 17px;

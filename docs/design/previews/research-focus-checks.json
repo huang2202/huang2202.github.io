@@ -1,0 +1,156 @@
+{
+  "viewports": [
+    {
+      "label": "desktop",
+      "width": 1440,
+      "clientWidth": 1425,
+      "documentWidth": 1425,
+      "affiliation": "Zhejiang University, State Key Lab of CAD & CG",
+      "links": [
+        {
+          "name": "Zhejiang University",
+          "href": "https://www.zju.edu.cn/english/"
+        },
+        {
+          "name": "State Key Lab of CAD & CG",
+          "href": "http://www.cad.zju.edu.cn/"
+        }
+      ],
+      "research": [
+        "My research interests lie in robot learning and embodied intelligence, with a focus on reinforcement learning.",
+        "My interests center on how robots can generalize learned skills to new objects, tasks, and environments, and adapt their behavior when conditions change.",
+        "I am interested in combining demonstration data with reinforcement learning to acquire and refine skills, with an emphasis on making efficient use of limited interaction with the environment."
+      ],
+      "wordCount": 67,
+      "biography": [
+        "I am a first-year Ph.D. student in the direct-entry program at the College of Computer Science and Technology, Zhejiang University. I am jointly trained at Zhongguancun Academy in Beijing.",
+        "I am advised by Prof. Chunhua Shen and am a member of his group at the State Key Lab of CAD & CG. I have also benefited greatly from Hao Chen’s research guidance."
+      ],
+      "bioLinks": [
+        {
+          "name": "College of Computer Science and Technology",
+          "href": "https://www.zju.edu.cn/english/74913/list.psp"
+        },
+        {
+          "name": "Zhongguancun Academy",
+          "href": "https://www.bza.edu.cn/en/"
+        },
+        {
+          "name": "Chunhua Shen",
+          "href": "https://cshen.github.io/"
+        },
+        {
+          "name": "Hao Chen",
+          "href": "https://stan-haochen.github.io/"
+        }
+      ],
+      "sections": ["about", "research", "contact"],
+      "navigation": ["#about", "#research", "#contact"],
+      "currentNavigation": "#about",
+      "structuredAffiliation": "Zhejiang University, State Key Lab of CAD & CG",
+      "writingLink": false
+    },
+    {
+      "label": "mobile",
+      "width": 390,
+      "clientWidth": 390,
+      "documentWidth": 390,
+      "affiliation": "Zhejiang University, State Key Lab of CAD & CG",
+      "links": [
+        {
+          "name": "Zhejiang University",
+          "href": "https://www.zju.edu.cn/english/"
+        },
+        {
+          "name": "State Key Lab of CAD & CG",
+          "href": "http://www.cad.zju.edu.cn/"
+        }
+      ],
+      "research": [
+        "My research interests lie in robot learning and embodied intelligence, with a focus on reinforcement learning.",
+        "My interests center on how robots can generalize learned skills to new objects, tasks, and environments, and adapt their behavior when conditions change.",
+        "I am interested in combining demonstration data with reinforcement learning to acquire and refine skills, with an emphasis on making efficient use of limited interaction with the environment."
+      ],
+      "wordCount": 67,
+      "biography": [
+        "I am a first-year Ph.D. student in the direct-entry program at the College of Computer Science and Technology, Zhejiang University. I am jointly trained at Zhongguancun Academy in Beijing.",
+        "I am advised by Prof. Chunhua Shen and am a member of his group at the State Key Lab of CAD & CG. I have also benefited greatly from Hao Chen’s research guidance."
+      ],
+      "bioLinks": [
+        {
+          "name": "College of Computer Science and Technology",
+          "href": "https://www.zju.edu.cn/english/74913/list.psp"
+        },
+        {
+          "name": "Zhongguancun Academy",
+          "href": "https://www.bza.edu.cn/en/"
+        },
+        {
+          "name": "Chunhua Shen",
+          "href": "https://cshen.github.io/"
+        },
+        {
+          "name": "Hao Chen",
+          "href": "https://stan-haochen.github.io/"
+        }
+      ],
+      "sections": ["about", "research", "contact"],
+      "navigation": ["#about", "#research", "#contact"],
+      "currentNavigation": "#about",
+      "structuredAffiliation": "Zhejiang University, State Key Lab of CAD & CG",
+      "writingLink": false
+    },
+    {
+      "label": "small-mobile",
+      "width": 320,
+      "clientWidth": 320,
+      "documentWidth": 320,
+      "affiliation": "Zhejiang University, State Key Lab of CAD & CG",
+      "links": [
+        {
+          "name": "Zhejiang University",
+          "href": "https://www.zju.edu.cn/english/"
+        },
+        {
+          "name": "State Key Lab of CAD & CG",
+          "href": "http://www.cad.zju.edu.cn/"
+        }
+      ],
+      "research": [
+        "My research interests lie in robot learning and embodied intelligence, with a focus on reinforcement learning.",
+        "My interests center on how robots can generalize learned skills to new objects, tasks, and environments, and adapt their behavior when conditions change.",
+        "I am interested in combining demonstration data with reinforcement learning to acquire and refine skills, with an emphasis on making efficient use of limited interaction with the environment."
+      ],
+      "wordCount": 67,
+      "biography": [
+        "I am a first-year Ph.D. student in the direct-entry program at the College of Computer Science and Technology, Zhejiang University. I am jointly trained at Zhongguancun Academy in Beijing.",
+        "I am advised by Prof. Chunhua Shen and am a member of his group at the State Key Lab of CAD & CG. I have also benefited greatly from Hao Chen’s research guidance."
+      ],
+      "bioLinks": [
+        {
+          "name": "College of Computer Science and Technology",
+          "href": "https://www.zju.edu.cn/english/74913/list.psp"
+        },
+        {
+          "name": "Zhongguancun Academy",
+          "href": "https://www.bza.edu.cn/en/"
+        },
+        {
+          "name": "Chunhua Shen",
+          "href": "https://cshen.github.io/"
+        },
+        {
+          "name": "Hao Chen",
+          "href": "https://stan-haochen.github.io/"
+        }
+      ],
+      "sections": ["about", "research", "contact"],
+      "navigation": ["#about", "#research", "#contact"],
+      "currentNavigation": "#about",
+      "structuredAffiliation": "Zhejiang University, State Key Lab of CAD & CG",
+      "writingLink": false
+    }
+  ],
+  "rssItems": 0,
+  "navigationPassed": true
+}
